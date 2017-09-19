@@ -6,27 +6,13 @@ Modular Regional TCP Load Balancer for GCE using target pool and forwarding rule
 
 ```ruby
 module "gce-lb-fr" {
-  source       = "github.com/GoogleCloudPlatform/terraform-google-lb"
+  source       = "GoogleCloudPlatform/lb/google"
   region       = "${var.region}"
   name         = "group1-lb"
   service_port = "${module.mig1.service_port}"
   target_tags  = ["${module.mig1.target_tags}"]
 }
 ```
-
-### Input variables
-
-- `region` (optional): Region for cloud resources. Default is `us-central1`
-- `network` (optional): Name of the network to create resources in. Default is `default`.
-- `name` (required): Name for the forwarding rule and prefix for supporting resources.
-- `service_port` (required): TCP port your service is listening on.
-- `target_tags` (required): List of target tags to allow traffic using firewall rule.
-- `session_affinity` (optional): How to distribute load. Options are `NONE`, `CLIENT_IP` and `CLIENT_IP_PROTO`.
-
-### Output variables
-
-- `target_pool`: The `self_link` to the target pool resource created.
-- `external_ip`: The external ip address of the forwarding rule..
 
 ## Resources created
 
