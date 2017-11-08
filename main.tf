@@ -41,7 +41,7 @@ resource "google_compute_http_health_check" "default" {
 }
 
 resource "google_compute_firewall" "default-lb-fw" {
-  project = "${var.project}"
+  project = "${var.firewall_project == "" ? var.project : var.firewall_project}"
   name    = "${var.name}-vm-service"
   network = "${var.network}"
 

@@ -29,6 +29,11 @@ variable network {
   default     = "default"
 }
 
+variable firewall_project {
+  description = "Name of the project to create the firewall rule in. Useful for shared VPC. Default is var.project."
+  default     = ""
+}
+
 variable name {
   description = "Name for the forwarding rule and prefix for supporting resources."
 }
