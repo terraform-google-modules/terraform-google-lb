@@ -20,7 +20,7 @@ module "gce-lb-fr" {
 
 ![architecture diagram](./diagram.png)
 
-- [`google_compute_forwarding_rule.default`](https://www.terraform.io/docs/providers/google/r/compute_firewall.html): TCP Forwarding rule to the service port on the instances.
+- [`google_compute_forwarding_rule.default`](https://www.terraform.io/docs/providers/google/r/compute_forwarding_rule.html): TCP Forwarding rule to the service port on the instances.
 - [`google_compute_target_pool.default`](https://www.terraform.io/docs/providers/google/r/compute_target_pool.html): The target pool created for the instance group.
 - [`google_compute_http_health_check.default`](https://www.terraform.io/docs/providers/google/r/compute_http_health_check.html): The health check for the instance group targeted at the service port.
 - [`google_compute_firewall.default-lb-fw`](https://www.terraform.io/docs/providers/google/r/compute_firewall.html): Firewall that allows traffic from anywhere to instances service port.
