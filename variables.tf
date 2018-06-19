@@ -42,6 +42,14 @@ variable service_port {
   description = "TCP port your service is listening on."
 }
 
+variable hc_path {
+  description = "the path which you want the healthcheck to use"
+}
+
+variable "hc_port" {
+  description = "the port for where the healthcheck is"
+}
+
 variable target_tags {
   description = "List of target tags to allow traffic using firewall rule."
   type        = "list"
