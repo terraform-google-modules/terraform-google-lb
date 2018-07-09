@@ -44,15 +44,23 @@ variable service_port {
 
 variable hc_path {
   description = "the path which you want the healthcheck to use"
+  default = "/"
 }
 
 variable "hc_port" {
   description = "the port for where the healthcheck is"
+  default = "80"
 }
 
 variable target_tags {
   description = "List of target tags to allow traffic using firewall rule."
   type        = "list"
+}
+
+variable source_ranges {
+  description = "List of source ranges ips to allow traffic from."
+  type        = "list"
+  default     = ["0.0.0.0/0"]
 }
 
 variable session_affinity {
