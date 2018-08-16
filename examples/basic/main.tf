@@ -35,7 +35,8 @@ data "template_file" "group1-startup-script" {
 }
 
 module "mig1" {
-  source            = "github.com/GoogleCloudPlatform/terraform-google-managed-instance-group"
+  source            = "GoogleCloudPlatform/managed-instance-group/google"
+  version           = "1.1.13"
   region            = "${var.region}"
   zone              = "${var.zone}"
   name              = "group1"
@@ -48,7 +49,6 @@ module "mig1" {
 }
 
 module "gce-lb-fr" {
-  // source       = "github.com/GoogleCloudPlatform/terraform-google-lb"
   source       = "../../"
   region       = "${var.region}"
   name         = "group1-lb"
