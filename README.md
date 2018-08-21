@@ -2,6 +2,9 @@
 
 Modular Regional TCP Load Balancer for GCE using target pool and forwarding rule.
 
+<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-basic" target="_blank">
+<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-basic/badge" /></a>
+
 ## Usage
 
 ```ruby
