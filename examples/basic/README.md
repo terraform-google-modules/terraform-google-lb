@@ -11,6 +11,12 @@ This example creates a managed instance group with 2 instances in the same regio
 
 ![architecture diagram](https://raw.githubusercontent.com/GoogleCloudPlatform/terraform-google-lb/master/examples/basic/diagram.png)
 
+## Change to the example directory
+
+```
+[[ `basename $PWD` != basic ]] && cd examples/basic
+```
+
 ## Install Terraform
 
 1. Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
