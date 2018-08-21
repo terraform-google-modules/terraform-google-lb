@@ -22,7 +22,7 @@ This example creates a managed instance group with 2 instances in the same regio
 ## Change to the example directory
 
 ```
-cd example-gke-k8s-helm/
+cd examples/basic/
 ```
 
 ## Set up the environment
