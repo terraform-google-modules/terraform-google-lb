@@ -1,6 +1,6 @@
 # TCP Forwarding Rule Example
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb&page=editor&tutorial=examples/basic/README.md)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb&working_dir=examples/basic&page=shell&tutorial=README.md)
 
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-basic" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-basic/badge" /></a>
@@ -16,13 +16,7 @@ This example creates a managed instance group with 2 instances in the same regio
 1. Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
 
 ```
-./terraform-install.sh
-```
-
-## Change to the example directory
-
-```
-cd examples/basic/
+../terraform-install.sh
 ```
 
 ## Set up the environment
