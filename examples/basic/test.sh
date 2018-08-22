@@ -16,4 +16,5 @@ if [[ $count -lt 120 ]]; then
   echo "INFO: PASS"
 else
   echo "ERROR: Failed"
+  exit 1
 fi
