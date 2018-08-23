@@ -56,7 +56,7 @@ module "mig1" {
   version           = "1.1.13"
   region            = "${var.region}"
   zone              = "${var.zone}"
-  name              = "group1"
+  name              = "${var.network_name}-group1"
   size              = 2
   service_port      = 80
   service_port_name = "http"
@@ -71,7 +71,7 @@ module "mig1" {
 module "gce-lb-fr" {
   source       = "../../"
   region       = "${var.region}"
-  name         = "group1-lb"
+  name         = "${var.network_name}"
   service_port = "${module.mig1.service_port}"
   target_tags  = ["${module.mig1.target_tags}"]
   network      = "${google_compute_subnetwork.default.name}"
