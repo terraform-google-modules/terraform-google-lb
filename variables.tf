@@ -51,3 +51,8 @@ variable session_affinity {
   description = "How to distribute load. Options are `NONE`, `CLIENT_IP` and `CLIENT_IP_PROTO`"
   default     = "NONE"
 }
+
+variable hc_request_path {
+  description = "Request path for health check. Default is /"
+  default = "/"
+}
