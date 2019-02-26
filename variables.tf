@@ -51,3 +51,13 @@ variable session_affinity {
   description = "How to distribute load. Options are `NONE`, `CLIENT_IP` and `CLIENT_IP_PROTO`"
   default     = "NONE"
 }
+
+variable hc_port {
+  description = "Health check, health check port, if different from var.service_port, if not given, var.service_port is used."
+  default     = ""
+}
+
+variable hc_path {
+  description = "Health check, the http path to check."
+  default     = "/"
+}

@@ -36,8 +36,8 @@ resource "google_compute_target_pool" "default" {
 resource "google_compute_http_health_check" "default" {
   project      = "${var.project}"
   name         = "${var.name}-hc"
-  request_path = "/"
-  port         = "${var.service_port}"
+  request_path = "${var.hc_path}"
+  port         = "${var.hc_port == "" ? var.service_port : var.hc_port}"
 }
 
 resource "google_compute_firewall" "default-lb-fw" {
@@ -51,5 +51,20 @@ resource "google_compute_firewall" "default-lb-fw" {
   }
 
   source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["${var.target_tags}"]
+}
+
+resource "google_compute_firewall" "default-lb-hc-fw" {
+  project = "${var.firewall_project == "" ? var.project : var.firewall_project}"
+  name    = "${var.name}-hc-service"
+  network = "${var.network}"
+  count   = "${var.hc_port == "" ? 0 : 1}"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["${var.hc_port}"]
+  }
+
+  source_ranges = ["209.85.152.0/22", "209.85.204.0/22", "130.211.0.0/22", "35.191.0.0/16"]
   target_tags   = ["${var.target_tags}"]
 }
