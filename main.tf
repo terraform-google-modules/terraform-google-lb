@@ -34,10 +34,14 @@ resource "google_compute_target_pool" "default" {
 }
 
 resource "google_compute_http_health_check" "default" {
-  project      = "${var.project}"
-  name         = "${var.name}-hc"
-  request_path = "/"
-  port         = "${var.service_port}"
+  project             = "${var.project}"
+  name                = "${var.name}-hc"
+  request_path        = "${var.health_check_path}"
+  port                = "${var.service_port}"
+  timeout_sec         = "${var.health_check_timeout}"
+  check_interval_sec  = "${var.health_check_interval}"
+  healthy_threshold   = "${var.healthy_threshold}"
+  unhealthy_threshold = "${var.unhealthy_threshold}"
 }
 
 resource "google_compute_firewall" "default-lb-fw" {

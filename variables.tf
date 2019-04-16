@@ -51,3 +51,28 @@ variable session_affinity {
   description = "How to distribute load. Options are `NONE`, `CLIENT_IP` and `CLIENT_IP_PROTO`"
   default     = "NONE"
 }
+
+variable health_check_path {
+  description = "The request path of the HTTP health check request."
+  default     = "/"
+}
+
+variable health_check_timeout {
+  description = "How long (in seconds) to wait before claiming failure. It is invalid for health_check_timeout to have greater value than health_check_interval."
+  default     = 5
+}
+
+variable health_check_interval {
+  description = "How often (in seconds) to send a health check."
+  default     = 5
+}
+
+variable healthy_threshold {
+  description = "A so-far unhealthy instance will be marked healthy after this many consecutive successes."
+  default     = 2
+}
+
+variable unhealthy_threshold {
+  description = "A so-far healthy instance will be marked unhealthy after this many consecutive failures."
+  default     = 2
+}
