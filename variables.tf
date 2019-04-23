@@ -76,3 +76,13 @@ variable unhealthy_threshold {
   description = "A so-far healthy instance will be marked unhealthy after this many consecutive failures."
   default     = 2
 }
+
+variable health_check_port {
+  description = "The TCP port number for the HTTP health check request."
+  default     = ""
+}
+
+variable force_static_ip {
+  description = "Allocate static IP for single port load balancer"
+  default     = false
+}
