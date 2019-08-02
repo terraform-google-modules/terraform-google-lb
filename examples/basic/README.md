@@ -1,3 +1,7 @@
+### Note
+
+  This example should be updated to use with terraform-0.12 after the next release of terraform-google-modules/vm/google/mig
+
 # TCP Forwarding Rule Example
 
 [![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb&working_dir=examples/basic&page=shell&tutorial=README.md)

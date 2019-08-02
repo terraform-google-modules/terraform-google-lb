@@ -5,6 +5,12 @@ Modular Regional TCP Load Balancer for GCE using target pool and forwarding rule
 <a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-basic" target="_blank">
 <img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-basic/badge" /></a>
 
+## Compatibility
+
+ This module is meant for use with Terraform 0.12. If you haven't [upgraded](https://www.terraform.io/upgrade-guides/0-12.html)
+ and need a Terraform 0.11.x-compatible version of this module, the last released version intended for
+ Terraform 0.11.x is [1.0.3](https://github.com/GoogleCloudPlatform/terraform-google-lb/releases/tag/1.0.3)
+
 ## Usage
 
 ```ruby
