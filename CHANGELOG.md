@@ -7,6 +7,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2019-08-02
+
 ### Changed
 
 - Supported version of Terraform is 0.12. [#11]
@@ -23,7 +25,8 @@ project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0] - 2017-08-28
 
 
-[Unreleased]: https://github.com/GoogleCloudPlatform/terraform-google-lb/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/GoogleCloudPlatform/terraform-google-lb/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/GoogleCloudPlatform/terraform-google-lb/compare/v1.0.3...v2.0.0
 [1.0.3]: https://github.com/GoogleCloudPlatform/terraform-google-lb/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/GoogleCloudPlatform/terraform-google-lb/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/GoogleCloudPlatform/terraform-google-lb/compare/v1.0.0...v1.0.1
