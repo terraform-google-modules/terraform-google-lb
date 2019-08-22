@@ -1,80 +1,53 @@
-### Note
+# Basic TCP Forwarding Rule Example
+The example creates a managed instance group with 2 instances in the same region and a network TCP Load Balancer.
 
-  This example should be updated to use with terraform-0.12 after the next release of terraform-google-modules/vm/google/mig
+![Load Balancer Diagram](./docs/diagram.png "Load Balancer Diagram")
 
-# TCP Forwarding Rule Example
+To provision this example, run the following from this directory or using Cloud Shell.
 
-[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/terraform-google-lb&working_dir=examples/basic&page=shell&tutorial=README.md)
-
-<a href="https://concourse-tf.gcp.solutions/teams/main/pipelines/tf-examples-lb-basic" target="_blank">
-<img src="https://concourse-tf.gcp.solutions/api/v1/teams/main/pipelines/tf-examples-lb-basic/badge" /></a>
-
-This example creates a managed instance group with 2 instances in the same region and a network TCP Load Balancer.
-
-**Figure 1.** *diagram of Google Cloud resources*
-
-![architecture diagram](https://raw.githubusercontent.com/GoogleCloudPlatform/terraform-google-lb/master/examples/basic/diagram.png)
+[![button](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/terraform-google-modules/terraform-google-lb&working_dir=examples/basic&page=shell&tutorial=README.md)
 
 ## Change to the example directory
-
 ```
 [[ `basename $PWD` != basic ]] && cd examples/basic
 ```
 
-## Install Terraform
-
-1. Install Terraform if it is not already installed (visit [terraform.io](https://terraform.io) for other distributions):
-
-```
-../terraform-install.sh
-```
-
-## Set up the environment
-
-1. Set the project, replace `YOUR_PROJECT` with your project ID:
-
+## Setup Environment
+* Set the project, replacing `YOUR_PROJECT` with your project ID
 ```
 PROJECT=YOUR_PROJECT
 ```
-
 ```
 gcloud config set project ${PROJECT}
 ```
-
-2. Configure the environment for Terraform:
-
+* Configure the environment for Terraform
 ```
 [[ $CLOUD_SHELL ]] || gcloud auth application-default login
 export GOOGLE_PROJECT=$(gcloud config get-value project)
 ```
 
-## Run Terraform
+## Setup Terraform
+* Install Terraform if it is not already installed
+* `terraform init` to download plugins and set up Terraform state
 
+## Apply Configuration
+* `terraform plan` to see the infrastructure plan
+* `terraform apply` to apply the infrastructure build Once complete, the load balancer IP address will display as an output
+
+## Test Load Balancer
+* Open the URL of the load balancer in your browser
 ```
-terraform init
-terraform apply
-```
-
-## Testing
-
-1. Wait for the load balancer to be provisioned:
-
-```
-./test.sh
-```
-
-2. Open the URL of the load balancer in your browser:
-
-```
-echo http://$(terraform output load-balancer-ip)
+echo http://$(terraform output load_balancer_ip)
 ```
 
-You should see the instance details from `group1`
+## Cleanup Resources
+* `terraform destroy` to remove all resources created by terraform
 
-## Cleanup
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Outputs
 
-1. Remove all resources created by terraform:
+| Name | Description |
+|------|-------------|
+| load\_balancer\_ip | The external ip address of the forwarding rule. |
 
-```
-terraform destroy
-```
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

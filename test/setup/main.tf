@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
-output "target_pool" {
-  description = "The `self_link` to the target pool resource created."
-  value       = google_compute_target_pool.default.self_link
-}
+module "lb-project" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 3.0"
 
-output "external_ip" {
-  description = "The external ip address of the forwarding rule."
-  value       = google_compute_forwarding_rule.default.ip_address
+  name              = "ci-lb"
+  random_project_id = "true"
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
+
+  activate_apis = [
+    "replicapool.googleapis.com",
+    "resourceviews.googleapis.com",
+    "serviceusage.googleapis.com"
+  ]
 }

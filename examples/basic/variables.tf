@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-output "target_pool" {
-  description = "The `self_link` to the target pool resource created."
-  value       = google_compute_target_pool.default.self_link
+variable region {
+  default = "us-central1"
 }
 
-output "external_ip" {
-  description = "The external ip address of the forwarding rule."
-  value       = google_compute_forwarding_rule.default.ip_address
+variable project_id {
+  description = "GCP Project used to create resources."
+}
+
+variable image_family {
+  description = "Image used for compute VMs."
+  default     = "debian-9"
+}
+
+variable image_project {
+  description = "GCP Project where source image comes from."
+  default     = "debian-cloud"
 }
