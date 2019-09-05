@@ -27,56 +27,55 @@ variable "network_name" {
 }
 
 provider "google" {
-  region = "${var.region}"
+  region = var.region
 }
 
 resource "google_compute_network" "default" {
-  name                    = "${var.network_name}"
+  name                    = var.network_name
   auto_create_subnetworks = "false"
 }
 
 resource "google_compute_subnetwork" "default" {
-  name                     = "${var.network_name}"
+  name                     = var.network_name
   ip_cidr_range            = "10.127.0.0/20"
-  network                  = "${google_compute_network.default.self_link}"
-  region                   = "${var.region}"
+  network                  = google_compute_network.default.self_link
+  region                   = var.region
   private_ip_google_access = true
 }
 
 data "template_file" "group1-startup-script" {
-  template = "${file("${format("%s/gceme.sh.tpl", path.module)}")}"
+  template = file(format("%s/gceme.sh.tpl", path.module))
 
-  vars {
+  vars = {
     PROXY_PATH = ""
   }
 }
 
 module "mig1" {
   source            = "GoogleCloudPlatform/managed-instance-group/google"
-  version           = "1.1.13"
-  region            = "${var.region}"
-  zone              = "${var.zone}"
+  region            = var.region
+  zone              = var.zone
   name              = "${var.network_name}-group1"
   size              = 2
   service_port      = 80
   service_port_name = "http"
   http_health_check = false
-  target_pools      = ["${module.gce-lb-fr.target_pool}"]
+  target_pools      = [module.gce-lb-fr.target_pool]
   target_tags       = ["allow-service1"]
-  startup_script    = "${data.template_file.group1-startup-script.rendered}"
-  network           = "${google_compute_subnetwork.default.name}"
-  subnetwork        = "${google_compute_subnetwork.default.name}"
+  startup_script    = data.template_file.group1-startup-script.rendered
+  network           = google_compute_subnetwork.default.name
+  subnetwork        = google_compute_subnetwork.default.name
 }
 
 module "gce-lb-fr" {
   source       = "../../"
-  region       = "${var.region}"
-  name         = "${var.network_name}"
-  service_port = "${module.mig1.service_port}"
-  target_tags  = ["${module.mig1.target_tags}"]
-  network      = "${google_compute_subnetwork.default.name}"
+  region       = var.region
+  name         = var.network_name
+  service_port = module.mig1.service_port
+  target_tags  = module.mig1.target_tags
+  network      = google_compute_subnetwork.default.name
 }
 
 output "load-balancer-ip" {
-  value = "${module.gce-lb-fr.external_ip}"
+  value = module.gce-lb-fr.external_ip
 }
