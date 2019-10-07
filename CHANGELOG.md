@@ -7,6 +7,14 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Updated basic example to use [terraform-google-vm](https://github.com/terraform-google-modules/terraform-google-vm) managed instance group. [#14]
+
+### Added
+
+- Introduced new lint testing and integration testing based on `terraform-google-modules` standards. [#12]
+
 ## [2.0.0] - 2019-08-02
 
 ### Changed

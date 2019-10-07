@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-output "target_pool" {
-  description = "The `self_link` to the target pool resource created."
-  value       = google_compute_target_pool.default.self_link
+output "project_id" {
+  value = module.lb-project.project_id
 }
 
-output "external_ip" {
-  description = "The external ip address of the forwarding rule."
-  value       = google_compute_forwarding_rule.default.ip_address
+output "sa_key" {
+  value     = google_service_account_key.int_test.private_key
+  sensitive = true
 }

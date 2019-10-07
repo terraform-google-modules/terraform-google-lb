@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-output "target_pool" {
-  description = "The `self_link` to the target pool resource created."
-  value       = google_compute_target_pool.default.self_link
+output "project_id" {
+  description = "The ID of the project in which resources are provisioned."
+  value       = var.project_id
 }
 
-output "external_ip" {
-  description = "The external ip address of the forwarding rule."
-  value       = google_compute_forwarding_rule.default.ip_address
+output "load_balancer_ip" {
+  description = "External IP address created by load balancer"
+  value       = module.example.load_balancer_ip
 }

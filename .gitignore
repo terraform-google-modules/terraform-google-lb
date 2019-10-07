@@ -3,3 +3,5 @@
 **/backend.tf
 **/terraform.tfvars
 **/values-*.yaml
+.kitchen
+credentials.json

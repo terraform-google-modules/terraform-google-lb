@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-output "target_pool" {
-  description = "The `self_link` to the target pool resource created."
-  value       = google_compute_target_pool.default.self_link
+provider "google" {
+  version = ">= 2.7.0"
+  project = var.project_id
 }
 
-output "external_ip" {
-  description = "The external ip address of the forwarding rule."
-  value       = google_compute_forwarding_rule.default.ip_address
+provider "google-beta" {
+  version = ">= 2.7.0"
+  project = var.project_id
 }
