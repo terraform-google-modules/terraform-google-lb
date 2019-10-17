@@ -18,7 +18,7 @@ module "load_balancer" {
 }
 
 module "managed_instance_group" {
-  source            = "terraform-google-modules/vm/google//modules/mig"
+  source            = "terraform-google-modules/vm/google/modules/mig"
   version           = "~> 1.0.0"
   region            = var.region
   target_size       = 2
