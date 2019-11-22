@@ -47,11 +47,6 @@ variable "service_port" {
   description = "TCP port your service is listening on."
 }
 
-variable "ip_address" {
-  description = "IP address of the external load balancer, if empty one will be assigned. Default is empty."
-  default     = ""
-}
-
 variable "target_tags" {
   description = "List of target tags to allow traffic using firewall rule."
   type        = list(string)
@@ -89,4 +84,14 @@ variable "health_check" {
     request_path        = null
     host                = null
   }
+}
+
+variable "ip_address" {
+  description = "IP address of the external load balancer, if empty one will be assigned. Default is empty."
+  default     = ""
+}
+
+variable "ip_protocol" {
+  description = "The IP protocol for the frontend forwarding rule and firewall rule. TCP, UDP, ESP, AH, SCTP or ICMP."
+  default     = "TCP"
 }

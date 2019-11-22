@@ -22,6 +22,7 @@ resource "google_compute_forwarding_rule" "default" {
   port_range            = var.service_port
   region                = var.region
   ip_address            = var.ip_address
+  ip_protocol           = var.ip_protocol
 }
 
 resource "google_compute_target_pool" "default" {
@@ -54,7 +55,7 @@ resource "google_compute_firewall" "default-lb-fw" {
   network = var.network
 
   allow {
-    protocol = "tcp"
+    protocol = lower(var.ip_protocol)
     ports    = [var.service_port]
   }
 

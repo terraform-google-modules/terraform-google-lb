@@ -51,6 +51,7 @@ Full functional examples are located in the [examples](./examples/) directory.
 | firewall\_project | Name of the project to create the firewall rule in. Useful for shared VPC. Default is var.project. | string | `""` | no |
 | health\_check | Health check to determine whether instances are responsive and able to do work | object | `<map>` | no |
 | ip\_address | IP address of the external load balancer, if empty one will be assigned. Default is empty. | string | `""` | no |
+| ip\_protocol | The IP protocol for the frontend forwarding rule and firewall rule. TCP, UDP, ESP, AH, SCTP or ICMP. | string | `"TCP"` | no |
 | name | Name for the forwarding rule and prefix for supporting resources. | string | n/a | yes |
 | network | Name of the network to create resources in. | string | `"default"` | no |
 | project | The project to deploy to, if not set the default provider project is used. | string | `""` | no |
