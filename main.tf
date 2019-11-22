@@ -21,6 +21,7 @@ resource "google_compute_forwarding_rule" "default" {
   load_balancing_scheme = "EXTERNAL"
   port_range            = var.service_port
   region                = var.region
+  ip_address            = var.ip_address
 }
 
 resource "google_compute_target_pool" "default" {

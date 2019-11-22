@@ -47,6 +47,11 @@ variable "service_port" {
   description = "TCP port your service is listening on."
 }
 
+variable "ip_address" {
+  description = "IP address of the external load balancer, if empty one will be assigned. Default is empty."
+  default     = ""
+}
+
 variable "target_tags" {
   description = "List of target tags to allow traffic using firewall rule."
   type        = list(string)
