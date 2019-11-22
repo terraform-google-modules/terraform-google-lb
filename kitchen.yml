@@ -35,3 +35,7 @@ suites:
         backend: local
         controls:
           - gcloud
+      - name: basic gcp
+        backend: gcp
+        controls:
+          - gcp

@@ -18,3 +18,7 @@ variable "project_id" {
   type        = "string"
   description = "The project ID to deploy resources into"
 }
+
+variable region {
+  default = "us-central1"
+}

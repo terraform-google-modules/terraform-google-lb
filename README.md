@@ -47,7 +47,9 @@ Full functional examples are located in the [examples](./examples/) directory.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| disable\_health\_check | Disables the health check on the target pool. | bool | `"false"` | no |
 | firewall\_project | Name of the project to create the firewall rule in. Useful for shared VPC. Default is var.project. | string | `""` | no |
+| health\_check | Health check to determine whether instances are responsive and able to do work | object | `<map>` | no |
 | name | Name for the forwarding rule and prefix for supporting resources. | string | n/a | yes |
 | network | Name of the network to create resources in. | string | `"default"` | no |
 | project | The project to deploy to, if not set the default provider project is used. | string | `""` | no |
@@ -64,3 +66,17 @@ Full functional examples are located in the [examples](./examples/) directory.
 | target\_pool | The `self_link` to the target pool resource created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## health_check variable
+
+The `health_check` variable values are passed on to the `google_compute_http_health_check` resource. Setting values to `null` will use `google_compute_http_health_check` [defaults](https://www.terraform.io/docs/providers/google/r/compute_http_health_check.html#argument-reference). It takes the following parameters:
+
+| Name | Description | Default | Requirement |
+| --- | --- | --- | --- |
+| check_interval_sec | How often (in seconds) to send a health check | `5` | no |
+| healthy_threshold | A so-far unhealthy instance will be marked healthy after this many consecutive successes | `2` | no |
+| host | The value of the host header in the HTTP health check request | `""` | no |
+| port |  The TCP port number for the HTTP health check request | `80` | no |
+| request_path | The request path of the HTTP health check request | `/` | no |
+| timeout_sec | How long (in seconds) to wait before claiming failure | `5` | no |
+| unhealthy_threshold | A so-far healthy instance will be marked unhealthy after this many consecutive failures | `2` | no |

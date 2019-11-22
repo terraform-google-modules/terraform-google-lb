@@ -19,7 +19,12 @@ output "project_id" {
   value       = var.project_id
 }
 
-output "load_balancer_ip" {
-  description = "External IP address created by load balancer"
-  value       = module.example.load_balancer_ip
+output "region" {
+  description = "Region"
+  value       = var.region
+}
+
+output "load_balancer_default_ip" {
+  description = "External IP address created by the default load balancer"
+  value       = module.example.load_balancer_default_ip
 }

@@ -48,6 +48,6 @@ echo http://$(terraform output load_balancer_ip)
 
 | Name | Description |
 |------|-------------|
-| load\_balancer\_ip | The external ip address of the forwarding rule. |
+| load\_balancer\_default\_ip | The external ip address of the forwarding rule for default lb. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
