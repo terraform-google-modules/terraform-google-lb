@@ -13,6 +13,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- New `health_check`, `ip_address`, and `ip_protocol` parameters. [#20]
 - Introduced new lint testing and integration testing based on `terraform-google-modules` standards. [#12]
 
 ## [2.0.0] - 2019-08-02
