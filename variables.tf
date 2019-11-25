@@ -87,8 +87,8 @@ variable "health_check" {
 }
 
 variable "ip_address" {
-  description = "IP address of the external load balancer, if empty one will be assigned. Default is empty."
-  default     = ""
+  description = "IP address of the external load balancer, if empty one will be assigned."
+  default     = null
 }
 
 variable "ip_protocol" {
