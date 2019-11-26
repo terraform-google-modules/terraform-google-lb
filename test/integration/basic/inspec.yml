@@ -21,5 +21,6 @@ attributes:
   - name: project_id
     required: true
     type: string
-  - name: load_balancer_ip
+  - name: region
+    required: true
     type: string

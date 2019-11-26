@@ -21,6 +21,8 @@ resource "google_compute_forwarding_rule" "default" {
   load_balancing_scheme = "EXTERNAL"
   port_range            = var.service_port
   region                = var.region
+  ip_address            = var.ip_address
+  ip_protocol           = var.ip_protocol
 }
 
 resource "google_compute_target_pool" "default" {
@@ -29,16 +31,22 @@ resource "google_compute_target_pool" "default" {
   region           = var.region
   session_affinity = var.session_affinity
 
-  health_checks = [
-    google_compute_http_health_check.default.name,
-  ]
+  health_checks = var.disable_health_check ? [] : [google_compute_http_health_check.default.0.self_link]
 }
 
 resource "google_compute_http_health_check" "default" {
-  project      = var.project
-  name         = "${var.name}-hc"
-  request_path = "/"
-  port         = var.service_port
+  count   = var.disable_health_check ? 0 : 1
+  project = var.project
+  name    = "${var.name}-hc"
+
+  check_interval_sec  = var.health_check["check_interval_sec"]
+  healthy_threshold   = var.health_check["healthy_threshold"]
+  timeout_sec         = var.health_check["timeout_sec"]
+  unhealthy_threshold = var.health_check["unhealthy_threshold"]
+
+  port         = var.health_check["port"]
+  request_path = var.health_check["request_path"]
+  host         = var.health_check["host"]
 }
 
 resource "google_compute_firewall" "default-lb-fw" {
@@ -47,10 +55,25 @@ resource "google_compute_firewall" "default-lb-fw" {
   network = var.network
 
   allow {
-    protocol = "tcp"
+    protocol = lower(var.ip_protocol)
     ports    = [var.service_port]
   }
 
   source_ranges = ["0.0.0.0/0"]
+  target_tags   = var.target_tags
+}
+
+resource "google_compute_firewall" "default-hc-fw" {
+  count   = var.disable_health_check ? 0 : 1
+  project = var.firewall_project == "" ? var.project : var.firewall_project
+  name    = "${var.name}-hc"
+  network = var.network
+
+  allow {
+    protocol = "tcp"
+    ports    = [var.health_check["port"] == null ? 80 : var.health_check["port"]]
+  }
+
+  source_ranges = ["35.191.0.0/16", "209.85.152.0/22", "209.85.204.0/22"]
   target_tags   = var.target_tags
 }

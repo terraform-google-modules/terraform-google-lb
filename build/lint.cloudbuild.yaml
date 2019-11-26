@@ -13,7 +13,7 @@
 # limitations under the License.
 
 steps:
-- name: 'gcr.io/cloud-foundation-cicd/cft/developer-tools:0.0.1'
+- name: 'gcr.io/cloud-foundation-cicd/cft/developer-tools:0.6.0'
   id: 'lint'
   args: ['/usr/local/bin/test_lint.sh']
 tags:

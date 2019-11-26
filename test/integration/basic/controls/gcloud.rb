@@ -11,10 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+project_id = attribute('project_id')
+region = attribute('region')
 
 control "gcloud" do
   title "gcloud"
-  describe command("gcloud compute forwarding-rules list --project=#{attribute("project_id")} --format json") do
+  describe command("gcloud compute forwarding-rules list --project=#{project_id} --format json") do
     its('exit_status') { should be 0 }
     its('stderr') { should eq '' }
 
@@ -27,4 +29,57 @@ control "gcloud" do
     end
     it { expect(data.first).to include(IPProtocol: 'TCP') }
   end
+
+  describe command("gcloud compute target-pools describe basic-load-balancer-default --project=#{project_id} --region=#{region} --format json") do
+    its('exit_status') { should be 0 }
+    its('stderr') { should eq '' }
+
+    let(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout, symbolize_names: true)
+      else
+        {}
+      end
+    end
+
+    it "should have 1 health check" do
+      expect(data[:healthChecks].count).to eq 1
+    end
+  end
+
+  describe command("gcloud compute target-pools describe basic-load-balancer-no-hc --project=#{project_id} --region=#{region} --format json") do
+    its('exit_status') { should be 0 }
+    its('stderr') { should eq '' }
+
+    let(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout, symbolize_names: true)
+      else
+        {}
+      end
+    end
+
+    it "should have no health check" do
+      expect(data[:healthChecks]).to eq nil
+    end
+  end
+
+  describe command("gcloud compute target-pools describe basic-load-balancer-custom-hc --project=#{project_id} --region=#{region} --format json") do
+    its('exit_status') { should be 0 }
+    its('stderr') { should eq '' }
+
+    let(:data) do
+      if subject.exit_status == 0
+        JSON.parse(subject.stdout, symbolize_names: true)
+      else
+        {}
+      end
+    end
+
+    it "should have 1 health check" do
+      expect(data[:healthChecks].count).to eq 1
+    end
+  end
+
+
 end

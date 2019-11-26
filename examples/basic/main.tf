@@ -46,18 +46,42 @@ module "managed_instance_group" {
   target_size       = 2
   hostname          = "mig-simple"
   instance_template = module.instance_template.self_link
-  target_pools      = [module.load_balancer.target_pool]
+  target_pools = [
+    module.load_balancer_default.target_pool,
+    module.load_balancer_no_hc.target_pool,
+    module.load_balancer_custom_hc.target_pool
+  ]
   named_ports = [{
     name = "http"
     port = 80
   }]
 }
 
-module "load_balancer" {
-  name         = "basic-load-balancer"
+module "load_balancer_default" {
+  name         = "basic-load-balancer-default"
   source       = "../../"
   region       = var.region
   service_port = 80
   target_tags  = ["allow-lb-service"]
   network      = google_compute_network.network.name
+}
+
+module "load_balancer_no_hc" {
+  name                 = "basic-load-balancer-no-hc"
+  source               = "../../"
+  region               = var.region
+  service_port         = 80
+  target_tags          = ["allow-lb-service"]
+  network              = google_compute_network.network.name
+  disable_health_check = true
+}
+
+module "load_balancer_custom_hc" {
+  name         = "basic-load-balancer-custom-hc"
+  source       = "../../"
+  region       = var.region
+  service_port = 8080
+  target_tags  = ["allow-lb-service"]
+  network      = google_compute_network.network.name
+  health_check = local.health_check
 }
