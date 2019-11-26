@@ -40,4 +40,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 [1.0.2]: https://github.com/GoogleCloudPlatform/terraform-google-lb/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/GoogleCloudPlatform/terraform-google-lb/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/GoogleCloudPlatform/terraform-google-lb/releases/tag/1.0.0
-[#11]: https://github.com/terraform-google-modules/terraform-google-vm/pull/11
+[#20]: https://github.com/terraform-google-modules/terraform-google-lb/issue/20
+[#14]: https://github.com/terraform-google-modules/terraform-google-lb/issue/14
+[#12]: https://github.com/terraform-google-modules/terraform-google-lb/issues/12
+[#11]: https://github.com/terraform-google-modules/terraform-google-lb/issues/11
