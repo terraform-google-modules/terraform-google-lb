@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+locals {
+  health_check_port = var.health_check["port"]
+}
+
 resource "google_compute_forwarding_rule" "default" {
   project               = var.project
   name                  = var.name
@@ -44,7 +48,7 @@ resource "google_compute_http_health_check" "default" {
   timeout_sec         = var.health_check["timeout_sec"]
   unhealthy_threshold = var.health_check["unhealthy_threshold"]
 
-  port         = var.health_check["port"]
+  port         = local.health_check_port == null ? var.service_port : local.health_check_port
   request_path = var.health_check["request_path"]
   host         = var.health_check["host"]
 }
@@ -71,7 +75,7 @@ resource "google_compute_firewall" "default-hc-fw" {
 
   allow {
     protocol = "tcp"
-    ports    = [var.health_check["port"] == null ? 80 : var.health_check["port"]]
+    ports    = [local.health_check_port == null ? 80 : local.health_check_port]
   }
 
   source_ranges = ["35.191.0.0/16", "209.85.152.0/22", "209.85.204.0/22"]
