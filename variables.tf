@@ -50,6 +50,13 @@ variable "service_port" {
 variable "target_tags" {
   description = "List of target tags to allow traffic using firewall rule."
   type        = list(string)
+  default     = null
+}
+
+variable "target_service_accounts" {
+  description = "List of target service accounts to allow traffic using firewall rule."
+  type        = list(string)
+  default     = null
 }
 
 variable "session_affinity" {

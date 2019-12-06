@@ -64,7 +64,10 @@ resource "google_compute_firewall" "default-lb-fw" {
   }
 
   source_ranges = ["0.0.0.0/0"]
-  target_tags   = var.target_tags
+
+  target_tags = var.target_tags
+
+  target_service_accounts = var.target_service_accounts
 }
 
 resource "google_compute_firewall" "default-hc-fw" {
@@ -79,5 +82,8 @@ resource "google_compute_firewall" "default-hc-fw" {
   }
 
   source_ranges = ["35.191.0.0/16", "209.85.152.0/22", "209.85.204.0/22"]
-  target_tags   = var.target_tags
+
+  target_tags = var.target_tags
+
+  target_service_accounts = var.target_service_accounts
 }

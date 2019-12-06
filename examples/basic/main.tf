@@ -16,6 +16,7 @@
 
 data "template_file" "instance_startup_script" {
   template = file("${path.module}/templates/gceme.sh.tpl")
+
   vars = {
     PROXY_PATH = ""
   }
@@ -32,7 +33,7 @@ module "instance_template" {
   source_image_family  = var.image_family
   source_image_project = var.image_project
   startup_script       = data.template_file.instance_startup_script.rendered
-  tags                 = ["allow-lb-service"]
+
   service_account = {
     email  = google_service_account.instance-group.email
     scopes = ["cloud-platform"]
@@ -46,11 +47,13 @@ module "managed_instance_group" {
   target_size       = 2
   hostname          = "mig-simple"
   instance_template = module.instance_template.self_link
+
   target_pools = [
     module.load_balancer_default.target_pool,
     module.load_balancer_no_hc.target_pool,
     module.load_balancer_custom_hc.target_pool
   ]
+
   named_ports = [{
     name = "http"
     port = 80
@@ -62,8 +65,9 @@ module "load_balancer_default" {
   source       = "../../"
   region       = var.region
   service_port = 80
-  target_tags  = ["allow-lb-service"]
   network      = google_compute_network.network.name
+
+  target_service_accounts = [google_service_account.instance-group.email]
 }
 
 module "load_balancer_no_hc" {
@@ -71,9 +75,10 @@ module "load_balancer_no_hc" {
   source               = "../../"
   region               = var.region
   service_port         = 80
-  target_tags          = ["allow-lb-service"]
   network              = google_compute_network.network.name
   disable_health_check = true
+
+  target_service_accounts = [google_service_account.instance-group.email]
 }
 
 module "load_balancer_custom_hc" {
@@ -81,7 +86,8 @@ module "load_balancer_custom_hc" {
   source       = "../../"
   region       = var.region
   service_port = 8080
-  target_tags  = ["allow-lb-service"]
   network      = google_compute_network.network.name
   health_check = local.health_check
+
+  target_service_accounts = [google_service_account.instance-group.email]
 }
