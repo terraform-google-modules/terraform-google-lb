@@ -58,7 +58,8 @@ Full functional examples are located in the [examples](./examples/) directory.
 | region | Region used for GCP resources. | string | n/a | yes |
 | service\_port | TCP port your service is listening on. | number | n/a | yes |
 | session\_affinity | How to distribute load. Options are `NONE`, `CLIENT_IP` and `CLIENT_IP_PROTO` | string | `"NONE"` | no |
-| target\_tags | List of target tags to allow traffic using firewall rule. | list(string) | n/a | yes |
+| target\_tags | List of target tags to allow traffic using firewall rule. | list(string) | null | no |
+| target\_service\_accounts | List of target service accounts to allow traffic using firewall rule. | list(string) | null | no |
 
 ## Outputs
 
