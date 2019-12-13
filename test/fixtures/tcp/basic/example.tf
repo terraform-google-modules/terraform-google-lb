@@ -15,7 +15,7 @@
  */
 
 module "example" {
-  source     = "../../../examples/basic/"
+  source     = "../../../../examples/tcp/basic/"
   project_id = var.project_id
   region     = var.region
 }

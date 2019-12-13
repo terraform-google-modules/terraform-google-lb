@@ -25,17 +25,17 @@ platforms:
   - name: default
 
 suites:
-  - name: basic
+  - name: tcp_basic
     driver:
-      root_module_directory: test/fixtures/basic/
+      root_module_directory: test/fixtures/tcp/basic/
     verifier:
       color: false
       systems:
-      - name: basic local
+      - name: tcp_basic local
         backend: local
         controls:
           - gcloud
-      - name: basic gcp
+      - name: tcp_basic gcp
         backend: gcp
         controls:
           - gcp
