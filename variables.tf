@@ -102,3 +102,9 @@ variable "ip_protocol" {
   description = "The IP protocol for the frontend forwarding rule and firewall rule. TCP, UDP, ESP, AH, SCTP or ICMP."
   default     = "TCP"
 }
+
+variable "allowed_ips" {
+  description = "The IP address ranges which can access the load balancer."
+  default     = ["0.0.0.0/0"]
+
+}
