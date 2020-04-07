@@ -106,5 +106,6 @@ variable "ip_protocol" {
 variable "allowed_ips" {
   description = "The IP address ranges which can access the load balancer."
   default     = ["0.0.0.0/0"]
+  type        = list(string)
 
 }
