@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.0](https://www.github.com/terraform-google-modules/terraform-google-lb/compare/v2.2.0...v2.3.0) (2020-04-07)
+
+
+### Features
+
+* Add list variable to override source_ips for LB ([#26](https://www.github.com/terraform-google-modules/terraform-google-lb/issues/26)) ([f640695](https://www.github.com/terraform-google-modules/terraform-google-lb/commit/f640695cd972cb3ba496582c88acc136b13fdf0c))
+
 ## [Unreleased]
 
 ## [2.2.0] - 2019-12-09
