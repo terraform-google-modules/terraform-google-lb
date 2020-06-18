@@ -13,7 +13,7 @@ This module is meant for use with Terraform 0.12. If you haven't [upgraded](http
 Basic usage is as follows:
 ```hcl
 module "load_balancer" {
-  source       = "terraform-google-modules/lb/google"
+  source       = "GoogleCloudPlatform/lb/google"
   version      = "~> 2.0.0"
   region       = var.region
   name         = "load-balancer"
