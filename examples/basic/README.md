@@ -44,6 +44,15 @@ echo http://$(terraform output load_balancer_ip)
 * `terraform destroy` to remove all resources created by terraform
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| image\_family | Image used for compute VMs. | `string` | `"debian-9"` | no |
+| image\_project | GCP Project where source image comes from. | `string` | `"debian-cloud"` | no |
+| project\_id | GCP Project used to create resources. | `any` | n/a | yes |
+| region | n/a | `string` | `"us-central1"` | no |
+
 ## Outputs
 
 | Name | Description |
