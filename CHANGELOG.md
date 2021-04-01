@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0](https://www.github.com/terraform-google-modules/terraform-google-lb/compare/v2.3.0...v3.0.0) (2021-04-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* add Terraform 0.13 constraint and module attribution (#32)
+
+### Features
+
+* add Terraform 0.13 constraint and module attribution ([#32](https://www.github.com/terraform-google-modules/terraform-google-lb/issues/32)) ([5a3c282](https://www.github.com/terraform-google-modules/terraform-google-lb/commit/5a3c2821cb99e79247c270a812f78aaad3b8d773))
+
 ## [2.3.0](https://www.github.com/terraform-google-modules/terraform-google-lb/compare/v2.2.0...v2.3.0) (2020-04-07)
 
 
