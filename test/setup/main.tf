@@ -16,7 +16,7 @@
 
 module "lb-project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 10.2"
 
   name              = "ci-lb"
   random_project_id = "true"
@@ -27,6 +27,7 @@ module "lb-project" {
   activate_apis = [
     "replicapool.googleapis.com",
     "resourceviews.googleapis.com",
-    "serviceusage.googleapis.com"
+    "serviceusage.googleapis.com",
+    "iam.googleapis.com"
   ]
 }
