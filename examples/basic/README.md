@@ -37,7 +37,7 @@ export GOOGLE_PROJECT=$(gcloud config get-value project)
 ## Test Load Balancer
 * Open the URL of the load balancer in your browser
 ```
-echo http://$(terraform output load_balancer_ip)
+echo http://$(terraform output load_balancer_default_ip)
 ```
 
 ## Cleanup Resources
