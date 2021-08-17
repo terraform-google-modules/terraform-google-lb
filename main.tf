@@ -19,11 +19,12 @@ locals {
 }
 
 resource "google_compute_forwarding_rule" "default" {
+  count                 = length(var.service_ports)
   project               = var.project
   name                  = var.name
   target                = google_compute_target_pool.default.self_link
   load_balancing_scheme = "EXTERNAL"
-  port_range            = var.service_port
+  port_range            = var.service_ports[count.index]
   region                = var.region
   ip_address            = var.ip_address
   ip_protocol           = var.ip_protocol
@@ -48,7 +49,7 @@ resource "google_compute_http_health_check" "default" {
   timeout_sec         = var.health_check["timeout_sec"]
   unhealthy_threshold = var.health_check["unhealthy_threshold"]
 
-  port         = local.health_check_port == null ? var.service_port : local.health_check_port
+  port         = local.health_check_port == null ? var.service_ports[0] : local.health_check_port
   request_path = var.health_check["request_path"]
   host         = var.health_check["host"]
 }
@@ -60,7 +61,7 @@ resource "google_compute_firewall" "default-lb-fw" {
 
   allow {
     protocol = lower(var.ip_protocol)
-    ports    = [var.service_port]
+    ports    = var.service_ports
   }
 
   source_ranges = var.allowed_ips

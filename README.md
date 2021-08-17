@@ -65,7 +65,7 @@ Full functional examples are located in the [examples](./examples/) directory.
 | network | Name of the network to create resources in. | `string` | `"default"` | no |
 | project | The project to deploy to, if not set the default provider project is used. | `string` | `""` | no |
 | region | Region used for GCP resources. | `string` | n/a | yes |
-| service\_port | TCP port your service is listening on. | `number` | n/a | yes |
+| service\_ports | List of TCP ports your service is listening on. | `list(number)` | n/a | yes |
 | session\_affinity | How to distribute load. Options are `NONE`, `CLIENT_IP` and `CLIENT_IP_PROTO` | `string` | `"NONE"` | no |
 | target\_service\_accounts | List of target service accounts to allow traffic using firewall rule. | `list(string)` | `null` | no |
 | target\_tags | List of target tags to allow traffic using firewall rule. | `list(string)` | `null` | no |
