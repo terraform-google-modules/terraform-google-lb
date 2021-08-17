@@ -61,11 +61,11 @@ module "managed_instance_group" {
 }
 
 module "load_balancer_default" {
-  name         = "basic-load-balancer-default"
-  source       = "../../"
-  region       = var.region
-  service_port = 80
-  network      = google_compute_network.network.name
+  name          = "basic-load-balancer-default"
+  source        = "../../"
+  region        = var.region
+  service_ports = [80]
+  network       = google_compute_network.network.name
 
   target_service_accounts = [google_service_account.instance-group.email]
 }
@@ -74,7 +74,7 @@ module "load_balancer_no_hc" {
   name                 = "basic-load-balancer-no-hc"
   source               = "../../"
   region               = var.region
-  service_port         = 80
+  service_ports        = [80]
   network              = google_compute_network.network.name
   disable_health_check = true
 
@@ -82,12 +82,12 @@ module "load_balancer_no_hc" {
 }
 
 module "load_balancer_custom_hc" {
-  name         = "basic-load-balancer-custom-hc"
-  source       = "../../"
-  region       = var.region
-  service_port = 8080
-  network      = google_compute_network.network.name
-  health_check = local.health_check
+  name          = "basic-load-balancer-custom-hc"
+  source        = "../../"
+  region        = var.region
+  service_ports = [8080]
+  network       = google_compute_network.network.name
+  health_check  = local.health_check
 
   target_service_accounts = [google_service_account.instance-group.email]
 }

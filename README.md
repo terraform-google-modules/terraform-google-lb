@@ -59,13 +59,14 @@ Full functional examples are located in the [examples](./examples/) directory.
 | disable\_health\_check | Disables the health check on the target pool. | `bool` | `false` | no |
 | firewall\_project | Name of the project to create the firewall rule in. Useful for shared VPC. Default is var.project. | `string` | `""` | no |
 | health\_check | Health check to determine whether instances are responsive and able to do work | <pre>object({<br>    check_interval_sec  = number<br>    healthy_threshold   = number<br>    timeout_sec         = number<br>    unhealthy_threshold = number<br>    port                = number<br>    request_path        = string<br>    host                = string<br>  })</pre> | <pre>{<br>  "check_interval_sec": null,<br>  "healthy_threshold": null,<br>  "host": null,<br>  "port": null,<br>  "request_path": null,<br>  "timeout_sec": null,<br>  "unhealthy_threshold": null<br>}</pre> | no |
+| instances | List of instance self links to add to the target pool. | `list(string)` | `null` | no |
 | ip\_address | IP address of the external load balancer, if empty one will be assigned. | `any` | `null` | no |
 | ip\_protocol | The IP protocol for the frontend forwarding rule and firewall rule. TCP, UDP, ESP, AH, SCTP or ICMP. | `string` | `"TCP"` | no |
 | name | Name for the forwarding rule and prefix for supporting resources. | `string` | n/a | yes |
 | network | Name of the network to create resources in. | `string` | `"default"` | no |
 | project | The project to deploy to, if not set the default provider project is used. | `string` | `""` | no |
 | region | Region used for GCP resources. | `string` | n/a | yes |
-| service\_port | TCP port your service is listening on. | `number` | n/a | yes |
+| service\_ports | List of TCP ports your service is listening on. | `list(number)` | n/a | yes |
 | session\_affinity | How to distribute load. Options are `NONE`, `CLIENT_IP` and `CLIENT_IP_PROTO` | `string` | `"NONE"` | no |
 | target\_service\_accounts | List of target service accounts to allow traffic using firewall rule. | `list(string)` | `null` | no |
 | target\_tags | List of target tags to allow traffic using firewall rule. | `list(string)` | `null` | no |
@@ -74,7 +75,7 @@ Full functional examples are located in the [examples](./examples/) directory.
 
 | Name | Description |
 |------|-------------|
-| external\_ip | The external ip address of the forwarding rule. |
+| external\_ip | The external ip address of the forwarding rules. |
 | target\_pool | The `self_link` to the target pool resource created. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

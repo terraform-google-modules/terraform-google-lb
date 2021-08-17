@@ -42,13 +42,19 @@ variable "name" {
   description = "Name for the forwarding rule and prefix for supporting resources."
 }
 
-variable "service_port" {
-  type        = number
-  description = "TCP port your service is listening on."
+variable "service_ports" {
+  type        = list(number)
+  description = "List of TCP ports your service is listening on."
 }
 
 variable "target_tags" {
   description = "List of target tags to allow traffic using firewall rule."
+  type        = list(string)
+  default     = null
+}
+
+variable "instances" {
+  description = "List of instance self links to add to the target pool."
   type        = list(string)
   default     = null
 }

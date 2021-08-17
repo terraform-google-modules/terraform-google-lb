@@ -20,6 +20,6 @@ output "target_pool" {
 }
 
 output "external_ip" {
-  description = "The external ip address of the forwarding rule."
-  value       = google_compute_forwarding_rule.default.ip_address
+  description = "The external ip address of the forwarding rules."
+  value       = google_compute_forwarding_rule.default[0].ip_address
 }
