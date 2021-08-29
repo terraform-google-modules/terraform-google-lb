@@ -15,10 +15,10 @@
  */
 
 variable "project_id" {
-  type        = "string"
+  type        = string
   description = "The project ID to deploy resources into"
 }
 
-variable region {
+variable "region" {
   default = "us-central1"
 }

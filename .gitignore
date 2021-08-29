@@ -5,3 +5,6 @@
 **/values-*.yaml
 .kitchen
 credentials.json
+
+# tf lock file
+.terraform.lock.hcl
