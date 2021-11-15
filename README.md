@@ -7,7 +7,8 @@ Modular Regional TCP Load Balancer for GCE using target pool and forwarding rule
 * [Internal load balancer](https://github.com/terraform-google-modules/terraform-google-lb-internal)
 
 ## Compatibility
-This module is meant for use with Terraform 0.13. If you haven't
+This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.
+ If you haven't
 [upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
 0.12.x-compatible version of this module, the last released version
 intended for Terraform 0.12.x is [v2.3.0](https://registry.terraform.io/modules/terraform-google-modules/-lb/google/v2.3.0).
