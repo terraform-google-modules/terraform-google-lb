@@ -15,11 +15,9 @@
  */
 
 provider "google" {
-  version = ">= 3.53.0"
   project = var.project_id
 }
 
 provider "google-beta" {
-  version = ">= 3.53.0"
   project = var.project_id
 }
