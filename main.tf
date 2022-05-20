@@ -19,6 +19,8 @@ locals {
 }
 
 resource "google_compute_forwarding_rule" "default" {
+  provider = google-beta
+
   project               = var.project
   name                  = var.name
   target                = google_compute_target_pool.default.self_link
