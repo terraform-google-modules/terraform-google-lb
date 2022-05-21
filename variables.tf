@@ -39,10 +39,16 @@ variable "firewall_project" {
 
 variable "name" {
   type        = string
-  description = "Name for the forwarding rule. It will be used as prefix for supporting resources if input for health check and firewall rules names are provided."
+  description = "Name for the forwarding rule. It will be used as prefix for supporting resources if input for health check, target pool and firewall rules names not are provided."
 }
 
-variable "hc_name" {
+variable "target_pool_name" {
+  type        = string
+  description = "Name for the target pool name."
+  default     = ""
+}
+
+variable "health_check_name" {
   type        = string
   description = "Name for the health check."
   default     = ""
@@ -50,13 +56,13 @@ variable "hc_name" {
 
 variable "lb_fw_name" {
   type        = string
-  description = "Name for the default firewall rule for LB."
+  description = "Name for the firewall rule for LB."
   default     = ""
 }
 
 variable "hc_fw_name" {
   type        = string
-  description = "Name for the default firewall rule for health check."
+  description = "Name for the firewall rule for health check."
   default     = ""
 }
 
@@ -125,5 +131,4 @@ variable "allowed_ips" {
   description = "The IP address ranges which can access the load balancer."
   default     = ["0.0.0.0/0"]
   type        = list(string)
-
 }

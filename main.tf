@@ -31,7 +31,7 @@ resource "google_compute_forwarding_rule" "default" {
 
 resource "google_compute_target_pool" "default" {
   project          = var.project
-  name             = var.name
+  name             = var.target_pool_name == "" ? var.name : var.target_pool_name
   region           = var.region
   session_affinity = var.session_affinity
 
@@ -41,7 +41,7 @@ resource "google_compute_target_pool" "default" {
 resource "google_compute_http_health_check" "default" {
   count   = var.disable_health_check ? 0 : 1
   project = var.project
-  name    = var.hc_name == "" ? "${var.name}-hc" : var.hc_name
+  name    = var.health_check_name == "" ? "${var.name}-hc" : var.health_check_name
 
   check_interval_sec  = var.health_check["check_interval_sec"]
   healthy_threshold   = var.health_check["healthy_threshold"]
