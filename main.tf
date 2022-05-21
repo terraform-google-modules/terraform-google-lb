@@ -41,7 +41,7 @@ resource "google_compute_target_pool" "default" {
 resource "google_compute_http_health_check" "default" {
   count   = var.disable_health_check ? 0 : 1
   project = var.project
-  name    = "${var.name}-hc"
+  name    = var.hc_name == "" ? "${var.name}-hc" : var.hc_name
 
   check_interval_sec  = var.health_check["check_interval_sec"]
   healthy_threshold   = var.health_check["healthy_threshold"]
@@ -55,7 +55,7 @@ resource "google_compute_http_health_check" "default" {
 
 resource "google_compute_firewall" "default-lb-fw" {
   project = var.firewall_project == "" ? var.project : var.firewall_project
-  name    = "${var.name}-vm-service"
+  name    = var.lb_fw_name == "" ? "${var.name}-vm-service" : var.lb_fw_name
   network = var.network
 
   allow {
@@ -73,7 +73,7 @@ resource "google_compute_firewall" "default-lb-fw" {
 resource "google_compute_firewall" "default-hc-fw" {
   count   = var.disable_health_check ? 0 : 1
   project = var.firewall_project == "" ? var.project : var.firewall_project
-  name    = "${var.name}-hc"
+  name    = var.hc_fw_name == "" ? "${var.name}-hc" : var.hc_fw_name
   network = var.network
 
   allow {

@@ -39,7 +39,25 @@ variable "firewall_project" {
 
 variable "name" {
   type        = string
-  description = "Name for the forwarding rule and prefix for supporting resources."
+  description = "Name for the forwarding rule. It will be used as prefix for supporting resources if input for health check and firewall rules names are provided."
+}
+
+variable "hc_name" {
+  type        = string
+  description = "Name for the health check."
+  default     = ""
+}
+
+variable "lb_fw_name" {
+  type        = string
+  description = "Name for the default firewall rule for LB."
+  default     = ""
+}
+
+variable "hc_fw_name" {
+  type        = string
+  description = "Name for the default firewall rule for health check."
+  default     = ""
 }
 
 variable "service_port" {
