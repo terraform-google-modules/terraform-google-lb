@@ -17,7 +17,6 @@
 terraform {
   required_version = ">= 0.13"
   required_providers {
-
     google = {
       source  = "hashicorp/google"
       version = ">= 3.53, < 5.0"
@@ -33,4 +32,7 @@ terraform {
     module_name = "blueprints/terraform/terraform-google-lb/v3.1.0"
   }
 
+  provider_meta "google-beta" {
+    module_name = "blueprints/terraform/terraform-google-lb/v3.1.0"
+  }
 }
