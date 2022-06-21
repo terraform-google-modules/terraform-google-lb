@@ -110,11 +110,7 @@ variable "allowed_ips" {
 }
 
 variable "labels" {
-<<<<<<< HEAD
-  description = "The labels to attach to this load balancer's forwarding rule"
-=======
   description = "The labels to attach to resources created by this module."
->>>>>>> 0571674519caa7c53b2ca11c5fc97556a95d43f0
   default     = {}
   type        = map(string)
 }
