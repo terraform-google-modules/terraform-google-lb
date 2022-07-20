@@ -10,7 +10,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### ⚠ BREAKING CHANGES
 
-* Adds support for labels (#45)
+* New requirement for the google-beta provider (#45)
 
 ### Features
 
