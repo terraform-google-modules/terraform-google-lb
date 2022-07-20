@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.0.0](https://github.com/terraform-google-modules/terraform-google-lb/compare/v3.1.0...v4.0.0) (2022-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* New requirement for the google-beta provider (#45)
+
+### Features
+
+* Adds support for labels ([#45](https://github.com/terraform-google-modules/terraform-google-lb/issues/45)) ([08b00ea](https://github.com/terraform-google-modules/terraform-google-lb/commit/08b00ea2c93d9427ea4b89ee9d4f392d4198e967))
+
 ## [3.1.0](https://github.com/terraform-google-modules/terraform-google-lb/compare/v3.0.0...v3.1.0) (2022-04-13)
 
 
