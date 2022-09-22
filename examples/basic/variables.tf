@@ -24,7 +24,7 @@ variable "project_id" {
 
 variable "image_family" {
   description = "Image used for compute VMs."
-  default     = "debian-9"
+  default     = "debian-11"
 }
 
 variable "image_project" {
