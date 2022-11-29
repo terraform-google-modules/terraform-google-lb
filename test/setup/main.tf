@@ -16,7 +16,7 @@
 
 module "lb-project" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 10.2"
+  version = "~> 14.0"
 
   name              = "ci-lb"
   random_project_id = "true"
