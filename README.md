@@ -60,7 +60,7 @@ Full functional examples are located in the [examples](./examples/) directory.
 | disable\_health\_check | Disables the health check on the target pool. | `bool` | `false` | no |
 | firewall\_project | Name of the project to create the firewall rule in. Useful for shared VPC. Default is var.project. | `string` | `""` | no |
 | health\_check | Health check to determine whether instances are responsive and able to do work | <pre>object({<br>    check_interval_sec  = number<br>    healthy_threshold   = number<br>    timeout_sec         = number<br>    unhealthy_threshold = number<br>    port                = number<br>    request_path        = string<br>    host                = string<br>  })</pre> | <pre>{<br>  "check_interval_sec": null,<br>  "healthy_threshold": null,<br>  "host": null,<br>  "port": null,<br>  "request_path": null,<br>  "timeout_sec": null,<br>  "unhealthy_threshold": null<br>}</pre> | no |
-| ip\_address | IP address of the external load balancer, if empty one will be assigned. | `any` | `null` | no |
+| ip\_address | IP address of the external load balancer, if empty one will be assigned. | `string` | `null` | no |
 | ip\_protocol | The IP protocol for the frontend forwarding rule and firewall rule. TCP, UDP, ESP, AH, SCTP or ICMP. | `string` | `"TCP"` | no |
 | labels | The labels to attach to resources created by this module. | `map(string)` | `{}` | no |
 | name | Name for the forwarding rule and prefix for supporting resources. | `string` | n/a | yes |

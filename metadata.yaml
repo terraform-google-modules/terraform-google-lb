@@ -1,0 +1,134 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-lb
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  title: Regional TCP Load Balancer Terraform Module
+  source:
+    repo: https://github.com/terraform-google-modules/terraform-google-lb
+    sourceType: git
+  version: 4.0.0
+  actuationTool:
+    type: Terraform
+    version: '>= 0.13'
+  examples:
+  - name: basic
+    location: examples/basic
+  variables:
+  - name: allowed_ips
+    description: The IP address ranges which can access the load balancer.
+    type: list(string)
+    default:
+    - 0.0.0.0/0
+    required: false
+  - name: disable_health_check
+    description: Disables the health check on the target pool.
+    type: bool
+    default: false
+    required: false
+  - name: firewall_project
+    description: Name of the project to create the firewall rule in. Useful for shared VPC. Default is var.project.
+    type: string
+    default: ""
+    required: false
+  - name: health_check
+    description: Health check to determine whether instances are responsive and able to do work
+    type: |-
+      object({
+          check_interval_sec  = number
+          healthy_threshold   = number
+          timeout_sec         = number
+          unhealthy_threshold = number
+          port                = number
+          request_path        = string
+          host                = string
+        })
+    default:
+      check_interval_sec: null
+      healthy_threshold: null
+      host: null
+      port: null
+      request_path: null
+      timeout_sec: null
+      unhealthy_threshold: null
+    required: false
+  - name: ip_address
+    description: IP address of the external load balancer, if empty one will be assigned.
+    type: string
+    required: false
+  - name: ip_protocol
+    description: The IP protocol for the frontend forwarding rule and firewall rule. TCP, UDP, ESP, AH, SCTP or ICMP.
+    type: string
+    default: TCP
+    required: false
+  - name: labels
+    description: The labels to attach to resources created by this module.
+    type: map(string)
+    default: {}
+    required: false
+  - name: name
+    description: Name for the forwarding rule and prefix for supporting resources.
+    type: string
+    required: true
+  - name: network
+    description: Name of the network to create resources in.
+    type: string
+    default: default
+    required: false
+  - name: project
+    description: The project to deploy to, if not set the default provider project is used.
+    type: string
+    default: ""
+    required: false
+  - name: region
+    description: Region used for GCP resources.
+    type: string
+    required: true
+  - name: service_port
+    description: TCP port your service is listening on.
+    type: number
+    required: true
+  - name: session_affinity
+    description: How to distribute load. Options are `NONE`, `CLIENT_IP` and `CLIENT_IP_PROTO`
+    type: string
+    default: NONE
+    required: false
+  - name: target_service_accounts
+    description: List of target service accounts to allow traffic using firewall rule.
+    type: list(string)
+    required: false
+  - name: target_tags
+    description: List of target tags to allow traffic using firewall rule.
+    type: list(string)
+    required: false
+  outputs:
+  - name: external_ip
+    description: The external ip address of the forwarding rule.
+  - name: target_pool
+    description: The `self_link` to the target pool resource created.
+  roles:
+  - level: Project
+    roles:
+    - roles/compute.admin
+    - roles/owner
+  services:
+  - replicapool.googleapis.com
+  - resourceviews.googleapis.com
+  - serviceusage.googleapis.com
+  - iam.googleapis.com
