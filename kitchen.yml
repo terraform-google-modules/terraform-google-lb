@@ -28,7 +28,7 @@ suites:
   - name: basic
     driver:
       root_module_directory: test/fixtures/basic/
-      verify_version: false      
+      verify_version: false
     verifier:
       color: false
       systems:
