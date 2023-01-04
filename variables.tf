@@ -95,11 +95,13 @@ variable "health_check" {
 
 variable "ip_address" {
   description = "IP address of the external load balancer, if empty one will be assigned."
+  type        = string
   default     = null
 }
 
 variable "ip_protocol" {
   description = "The IP protocol for the frontend forwarding rule and firewall rule. TCP, UDP, ESP, AH, SCTP or ICMP."
+  type        = string
   default     = "TCP"
 }
 
