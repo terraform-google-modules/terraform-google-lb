@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.0.1](https://github.com/terraform-google-modules/terraform-google-lb/compare/v4.0.0...v4.0.1) (2023-01-20)
+
+
+### Bug Fixes
+
+* fixes lint issues and generates metadata ([#59](https://github.com/terraform-google-modules/terraform-google-lb/issues/59)) ([6d55969](https://github.com/terraform-google-modules/terraform-google-lb/commit/6d55969ccae1b2cdecb9aba13dcf0b3a5f4ccefd))
+
 ## [4.0.0](https://github.com/terraform-google-modules/terraform-google-lb/compare/v3.1.0...v4.0.0) (2022-06-22)
 
 
