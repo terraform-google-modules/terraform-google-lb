@@ -40,3 +40,31 @@ suites:
         backend: gcp
         controls:
           - gcp
+  - name: regional_proxy_lb_mig
+    driver:
+      command_timeout: 1800
+      root_module_directory: test/fixtures/regional_proxy_lb/mig/
+    verifier:
+      color: false
+      systems:
+      - name: forwarding_rule
+        backend: gcp
+        controls:
+          - forwarding_rule
+      - name: proxy
+        backend: local
+        controls:
+          - proxy
+      - name: backend_service
+        backend: gcp
+        controls:
+          - backend_service
+      - name: health_check
+        backend: local
+        controls:
+          - health_check
+      - name: firewall
+        backend: gcp
+        controls:
+          - firewall
+

@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.lb-project.project_id
+output "backend_services" {
+  description = "The backend service resources."
+  value       = google_compute_region_backend_service.default
+  sensitive   = true // can contain sensitive iap_config
 }
 
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+output "forwarding_rule" {
+  description = "The forwarding rule of the load balancer."
+  value       = google_compute_forwarding_rule.default
 }
 
-output "sa_email" {
-  value = google_service_account.int_test.email
+
+output "tcp_proxy" {
+  description = "The TCP proxy used by this module."
+  value       = google_compute_region_target_tcp_proxy.default.self_link
 }
