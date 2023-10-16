@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-output "project_id" {
-  value = module.lb-project.project_id
+
+variable "project" {
+  type        = string
+  description = "The project to deploy to, if not set the default provider project is used."
+  default     = null
 }
 
-output "sa_key" {
-  value     = google_service_account_key.int_test.private_key
-  sensitive = true
+variable "region" {
+  default = "us-east4"
 }
 
-output "sa_email" {
-  value = google_service_account.int_test.email
+variable "service_account_email" {
+  type        = string
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account."
 }
+
