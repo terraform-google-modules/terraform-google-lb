@@ -21,7 +21,7 @@ locals {
 }
 
 resource "google_compute_network" "default" {
-  name                    = "load-balancer-module-network"
+  name                    = "regional-proxy-mig-network"
   auto_create_subnetworks = "false"
   project                 = var.project
 }
