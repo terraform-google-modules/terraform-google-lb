@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.0.2](https://github.com/terraform-google-modules/terraform-google-lb/compare/v4.0.1...v4.0.2) (2023-10-20)
+
+
+### Bug Fixes
+
+* upgraded versions.tf to include minor bumps from tpg v5 ([#72](https://github.com/terraform-google-modules/terraform-google-lb/issues/72)) ([fb54a8f](https://github.com/terraform-google-modules/terraform-google-lb/commit/fb54a8f99968ab589c4b033a3b0be1d7b47ba634))
+
 ## [4.0.1](https://github.com/terraform-google-modules/terraform-google-lb/compare/v4.0.0...v4.0.1) (2023-01-20)
 
 
