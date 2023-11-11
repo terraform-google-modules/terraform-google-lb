@@ -40,6 +40,12 @@ variable "network_project" {
   description = "Name of the project where the network resides. Useful for shared VPC. Default is var.project."
 }
 
+variable "create_firewall_rules" {
+  description = "Whether to create firewall rules for health check and proxy"
+  type        = bool
+  default     = false
+}
+
 variable "target_tags" {
   description = "List of target tags to allow traffic using firewall rule."
   type        = list(string)
@@ -60,16 +66,13 @@ variable "create_proxy_only_subnet" {
 
 variable "proxy_only_subnet_cidr" {
   type        = string
-  description = "The name of the proxy only subnet, assumed to have been created first"
+  description = "The CIDR block of the proxy only subnet"
 }
-
 
 variable "port_front_end" {
   description = "Port of the load balancer front end"
   type        = number
 }
-
-
 
 variable "health_check" {
   description = "Health check to determine whether instances are responsive and able to do work"

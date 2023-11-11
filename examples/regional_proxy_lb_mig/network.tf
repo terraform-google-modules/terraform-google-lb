@@ -23,13 +23,13 @@ locals {
 resource "google_compute_network" "default" {
   name                    = "regional-proxy-mig-network"
   auto_create_subnetworks = "false"
-  project                 = var.project
+  project                 = var.project_id
 }
 
 resource "google_compute_subnetwork" "default" {
   name          = "load-balancer-module-subnetwork"
   region        = var.region
-  project       = var.project
+  project       = var.project_id
   network       = google_compute_network.default.self_link
   ip_cidr_range = local.ip_cidr_range
 }
@@ -38,13 +38,13 @@ resource "google_compute_subnetwork" "default" {
 resource "google_compute_router" "default" {
   name    = "load-balancer-module-router"
   region  = var.region
-  project = var.project
+  project = var.project_id
   network = google_compute_network.default.self_link
 }
 
 
 module "cloud_nat" {
-  project_id = var.project
+  project_id = var.project_id
   region     = var.region
   name       = "load-balancer-module-nat"
   source     = "terraform-google-modules/cloud-nat/google"
@@ -56,7 +56,7 @@ resource "google_compute_firewall" "all-internal" {
   name          = "fw-all-internal"
   network       = google_compute_network.default.name
   source_ranges = [local.ip_cidr_range]
-  project       = var.project
+  project       = var.project_id
 
   allow {
     protocol = "icmp"

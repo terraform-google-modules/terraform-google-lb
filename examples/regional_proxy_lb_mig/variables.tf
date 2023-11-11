@@ -15,7 +15,7 @@
  */
 
 
-variable "project" {
+variable "project_id" {
   type        = string
   description = "The project to deploy to, if not set the default provider project is used."
   default     = null
@@ -25,7 +25,7 @@ variable "region" {
   default = "us-east4"
 }
 
-variable "service_account_email" {
+variable "sa_email" {
   type        = string
   description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account."
 }

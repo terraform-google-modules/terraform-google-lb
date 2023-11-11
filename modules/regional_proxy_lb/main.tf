@@ -96,10 +96,10 @@ resource "google_compute_region_health_check" "default" {
   region  = var.region
 
 
-  check_interval_sec  = lookup(var.health_check, "check_interval_sec", 5)
-  timeout_sec         = lookup(var.health_check, "timeout_sec", 5)
-  healthy_threshold   = lookup(var.health_check, "healthy_threshold", 2)
-  unhealthy_threshold = lookup(var.health_check, "unhealthy_threshold", 2)
+  check_interval_sec  = lookup(var.health_check, "check_interval_sec", null)
+  timeout_sec         = lookup(var.health_check, "timeout_sec", null)
+  healthy_threshold   = lookup(var.health_check, "healthy_threshold", null)
+  unhealthy_threshold = lookup(var.health_check, "unhealthy_threshold", null)
 
 
   tcp_health_check {
@@ -116,15 +116,18 @@ resource "google_compute_region_health_check" "default" {
   }
 }
 
-
+data "google_netblock_ip_ranges" "hcs" {
+  range_type = "health-checkers"
+}
 
 # allow access from health check ranges
 resource "google_compute_firewall" "default-hc-fw" {
+  count         = var.create_firewall_rules ? 1 : 0
   name          = "${var.name}-allow-hc"
   direction     = "INGRESS"
   project       = var.network_project
   network       = var.network
-  source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
+  source_ranges = data.google_netblock_ip_ranges.hcs.cidr_blocks_ipv4
   allow {
     protocol = local.ip_protocol
   }
@@ -132,6 +135,7 @@ resource "google_compute_firewall" "default-hc-fw" {
 }
 
 resource "google_compute_firewall" "default-proxy-fw" {
+  count         = var.create_firewall_rules ? 1 : 0
   name          = "${var.name}-allow-proxy"
   direction     = "INGRESS"
   project       = var.network_project

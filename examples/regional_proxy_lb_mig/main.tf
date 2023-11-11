@@ -24,14 +24,14 @@ locals {
 module "instance_template" {
   source       = "terraform-google-modules/vm/google//modules/instance_template"
   version      = "~> 8.0"
-  project_id   = var.project
+  project_id   = var.project_id
   subnetwork   = google_compute_subnetwork.default.id
   machine_type = "e2-small"
   service_account = {
-    email  = var.service_account_email
+    email  = var.sa_email
     scopes = ["cloud-platform"]
   }
-  subnetwork_project = var.project
+  subnetwork_project = var.project_id
   tags               = local.tags
   labels             = { env = "test" }
 
@@ -65,7 +65,7 @@ module "instance_template" {
 module "mig" {
   source            = "terraform-google-modules/vm/google//modules/mig"
   version           = "~> 8.0"
-  project_id        = var.project
+  project_id        = var.project_id
   region            = var.region
   target_size       = 2
   hostname          = "mig-simple"
@@ -78,22 +78,20 @@ module "mig" {
 
 
 module "regional_proxy_lb" {
-  source                   = "../../../modules/regional_proxy_lb"
+  source                   = "../../modules/regional_proxy_lb"
   name                     = "my-tcp-lb"
   region                   = var.region
-  project                  = var.project
-  network_project          = var.project
+  project                  = var.project_id
+  network_project          = var.project_id
   network                  = google_compute_network.default.id
   target_tags              = local.tags
   port_front_end           = 101
   create_proxy_only_subnet = true
   proxy_only_subnet_cidr   = "10.129.0.0/23"
+  create_firewall_rules    = true
   health_check = {
-    description         = "Health check to determine whether instances are responsive and able to do work"
-    check_interval_sec  = 10
-    healthy_threshold   = 3
-    timeout_sec         = 7
-    unhealthy_threshold = 4
+    description        = "Health check to determine whether instances are responsive and able to do work"
+    check_interval_sec = 10
     tcp_health_check = {
       port_specification = "USE_SERVING_PORT"
     }
