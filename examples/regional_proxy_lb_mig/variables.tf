@@ -22,11 +22,12 @@ variable "project_id" {
 }
 
 variable "region" {
-  default = "us-east4"
+  description = "The region of the load balancer."
+  default     = "us-east4"
 }
 
 variable "sa_email" {
   type        = string
-  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account."
+  description = "Service account to attach to the VM instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template#service_account."
 }
 
