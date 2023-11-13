@@ -25,6 +25,7 @@ module "lb-project" {
   billing_account   = var.billing_account
 
   activate_apis = [
+    "compute.googleapis.com",
     "replicapool.googleapis.com",
     "resourceviews.googleapis.com",
     "serviceusage.googleapis.com",
