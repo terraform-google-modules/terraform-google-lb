@@ -67,6 +67,7 @@ module "gce-lb-tcp" {
 |------|-------------|------|---------|:--------:|
 | address | IP address of the external load balancer, if not provided, an ephemeral address will be created | `string` | `null` | no |
 | backend | backend attributes | <pre>object({<br>    port             = optional(number)<br>    port_name        = optional(string)<br>    description      = optional(string)<br>    backend_type     = string #INSTANCE_GROUP, NETWORK_ENDPOINT_GROUP<br>    session_affinity = optional(string)<br>    timeout_sec      = optional(number)<br><br>    log_config = object({<br>      enable      = optional(bool)<br>      sample_rate = optional(number)<br>    })<br><br>    groups = list(object({<br>      group = string<br><br>      balancing_mode               = optional(string)<br>      capacity_scaler              = optional(number)<br>      description                  = optional(string)<br>      max_connections              = optional(number)<br>      max_connections_per_instance = optional(number)<br>      max_connections_per_endpoint = optional(number)<br>      max_rate                     = optional(number)<br>      max_rate_per_instance        = optional(number)<br>      max_rate_per_endpoint        = optional(number)<br>      max_utilization              = optional(number)<br>    }))<br>  })</pre> | n/a | yes |
+| create\_firewall\_rules | Whether to create firewall rules for health check and proxy | `bool` | `false` | no |
 | create\_proxy\_only\_subnet | Whether to create the proxy only subnet for the region | `bool` | `false` | no |
 | health\_check | Health check to determine whether instances are responsive and able to do work | <pre>object({<br>    check_interval_sec  = optional(number)<br>    healthy_threshold   = optional(number)<br>    timeout_sec         = optional(number)<br>    unhealthy_threshold = optional(number)<br>    tcp_health_check = object({<br>      request            = optional(string)<br>      response           = optional(string)<br>      port               = optional(number)<br>      port_name          = optional(string)<br>      port_specification = optional(string)<br>      proxy_header       = optional(string)<br>      }<br>    )<br>    }<br>  )</pre> | n/a | yes |
 | name | Name of the load balancer and prefix for supporting resources. | `string` | n/a | yes |
@@ -74,7 +75,7 @@ module "gce-lb-tcp" {
 | network\_project | Name of the project where the network resides. Useful for shared VPC. Default is var.project. | `string` | n/a | yes |
 | port\_front\_end | Port of the load balancer front end | `number` | n/a | yes |
 | project | The project to deploy to, if not set the default provider project is used. | `string` | `null` | no |
-| proxy\_only\_subnet\_cidr | The name of the proxy only subnet, assumed to have been created first | `string` | n/a | yes |
+| proxy\_only\_subnet\_cidr | The CIDR block of the proxy only subnet | `string` | n/a | yes |
 | region | Region of the created GCP resources from this module. | `string` | n/a | yes |
 | target\_tags | List of target tags to allow traffic using firewall rule. | `list(string)` | n/a | yes |
 
