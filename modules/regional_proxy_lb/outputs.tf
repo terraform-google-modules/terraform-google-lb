@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-module "lb-project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 14.0"
+output "backend_services" {
+  description = "The backend service resources."
+  value       = google_compute_region_backend_service.default
+  sensitive   = true // can contain sensitive iap_config
+}
 
-  name              = "ci-lb"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+output "forwarding_rule" {
+  description = "The forwarding rule of the load balancer."
+  value       = google_compute_forwarding_rule.default
+}
 
-  activate_apis = [
-    "compute.googleapis.com",
-    "replicapool.googleapis.com",
-    "resourceviews.googleapis.com",
-    "serviceusage.googleapis.com",
-    "iam.googleapis.com"
-  ]
+
+output "tcp_proxy" {
+  description = "The TCP proxy used by this module."
+  value       = google_compute_region_target_tcp_proxy.default.self_link
 }

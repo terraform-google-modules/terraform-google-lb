@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,25 @@
  * limitations under the License.
  */
 
-module "lb-project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 14.0"
+terraform {
+  required_version = ">= 0.13"
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 3.53, < 5.0"
+    }
 
-  name              = "ci-lb"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = ">= 3.53, < 5.0"
+    }
+  }
 
-  activate_apis = [
-    "compute.googleapis.com",
-    "replicapool.googleapis.com",
-    "resourceviews.googleapis.com",
-    "serviceusage.googleapis.com",
-    "iam.googleapis.com"
-  ]
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-lb:regional_proxy_lb/v4.0.1"
+  }
+
+  provider_meta "google-beta" {
+    module_name = "blueprints/terraform/terraform-google-lb:regional_proxy_lb/v4.0.1"
+  }
 }
