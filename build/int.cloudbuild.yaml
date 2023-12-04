@@ -33,9 +33,34 @@ steps:
 - id: destroy
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && kitchen_do destroy']
+
+- id: regional_proxy_lb_mig_init
+  waitFor:
+    - destroy
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestAll/examples/regional_proxy_lb_mig --stage init --verbose']
+
+- id: regional_proxy_lb_mig_apply
+  waitFor:
+    - regional_proxy_lb_mig_init
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestAll/examples/regional_proxy_lb_mig --stage apply --verbose']
+
+- id: regional_proxy_lb_mig_verify
+  waitFor:
+    - regional_proxy_lb_mig_apply
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestAll/examples/regional_proxy_lb_mig --stage verify --verbose']
+- id: regional_proxy_lb_mig_teardown
+  waitFor:
+    - regional_proxy_lb_mig_verify
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestAll/examples/regional_proxy_lb_mig --stage teardown --verbose']
+
 tags:
 - 'ci'
 - 'integration'
 substitutions:
   _DOCKER_IMAGE_DEVELOPER_TOOLS: 'cft/developer-tools'
   _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '1.17'
+

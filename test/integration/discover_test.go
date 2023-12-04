@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-module "lb-project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 14.0"
+package test
 
-  name              = "ci-lb"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+import (
+	// should be imported to enable testing for GO modules
+	"testing"
 
-  activate_apis = [
-    "compute.googleapis.com",
-    "replicapool.googleapis.com",
-    "resourceviews.googleapis.com",
-    "serviceusage.googleapis.com",
-    "iam.googleapis.com"
-  ]
+	// should be imported to use terraform helpers in blueprints test framework
+	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
+)
+
+// entry function for the test; can be named as Test*
+func TestAll(t *testing.T) {
+	// the helper to autodiscover and test blueprint examples
+	tft.AutoDiscoverAndTest(t)
 }

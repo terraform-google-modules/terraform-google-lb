@@ -1,5 +1,5 @@
 # Regional TCP Load Balancer Terraform Module
-Modular Regional TCP Load Balancer for GCE using target pool and forwarding rule.
+This is a collection of modules for external TCP/UDP load balancers. The root module is an implementation of passthrough regional TCP Load Balancer for GCE using target pool and forwarding rule. A regional proxy based external load balancer is implemented as a submodlue[modules/regional_proxy_lb/].
 
 ### Load Balancer Types
 * **TCP load balancer**
