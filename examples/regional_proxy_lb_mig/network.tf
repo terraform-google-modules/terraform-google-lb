@@ -48,7 +48,7 @@ module "cloud_nat" {
   region     = var.region
   name       = "load-balancer-module-nat"
   source     = "terraform-google-modules/cloud-nat/google"
-  version    = "~> 2.2"
+  version    = "~> 5.0"
   router     = google_compute_router.default.name
 }
 
