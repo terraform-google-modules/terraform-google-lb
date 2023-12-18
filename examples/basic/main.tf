@@ -61,8 +61,10 @@ module "managed_instance_group" {
 }
 
 module "load_balancer_default" {
-  name         = "basic-load-balancer-default"
-  source       = "../../"
+  name    = "basic-load-balancer-default"
+  source  = "terraform-google-modules/lb/google"
+  version = "~> 4.0"
+
   region       = var.region
   service_port = 80
   network      = google_compute_network.network.name
@@ -71,8 +73,10 @@ module "load_balancer_default" {
 }
 
 module "load_balancer_no_hc" {
-  name                 = "basic-load-balancer-no-hc"
-  source               = "../../"
+  name    = "basic-load-balancer-no-hc"
+  source  = "terraform-google-modules/lb/google"
+  version = "~> 4.0"
+
   region               = var.region
   service_port         = 80
   network              = google_compute_network.network.name
@@ -82,8 +86,10 @@ module "load_balancer_no_hc" {
 }
 
 module "load_balancer_custom_hc" {
-  name         = "basic-load-balancer-custom-hc"
-  source       = "../../"
+  name    = "basic-load-balancer-custom-hc"
+  source  = "terraform-google-modules/lb/google"
+  version = "~> 4.0"
+
   region       = var.region
   service_port = 8080
   network      = google_compute_network.network.name
