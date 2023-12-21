@@ -78,7 +78,9 @@ module "mig" {
 
 
 module "regional_proxy_lb" {
-  source                   = "../../modules/regional_proxy_lb"
+  source  = "terraform-google-modules/lb/google//modules/regional_proxy_lb"
+  version = "~> 4.0"
+
   name                     = "my-tcp-lb"
   region                   = var.region
   project                  = var.project_id
