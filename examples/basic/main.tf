@@ -61,7 +61,7 @@ module "managed_instance_group" {
 }
 
 module "load_balancer_default" {
-  source  = "GoogleCloudPlatform/lb/google"
+  source  = "terraform-google-modules/lb/google"
   version = "~> 4.0"
 
   name         = "basic-load-balancer-default"
@@ -73,7 +73,7 @@ module "load_balancer_default" {
 }
 
 module "load_balancer_no_hc" {
-  source  = "GoogleCloudPlatform/lb/google"
+  source  = "terraform-google-modules/lb/google"
   version = "~> 4.0"
 
   name                 = "basic-load-balancer-no-hc"
@@ -86,7 +86,7 @@ module "load_balancer_no_hc" {
 }
 
 module "load_balancer_custom_hc" {
-  source  = "GoogleCloudPlatform/lb/google"
+  source  = "terraform-google-modules/lb/google"
   version = "~> 4.0"
 
   name         = "basic-load-balancer-custom-hc"
