@@ -23,7 +23,7 @@ spec:
   source:
     repo: https://github.com/terraform-google-modules/terraform-google-lb
     sourceType: git
-  version: 4.0.2
+  version: 4.1.0
   actuationTool:
     type: Terraform
     version: '>= 0.13'
