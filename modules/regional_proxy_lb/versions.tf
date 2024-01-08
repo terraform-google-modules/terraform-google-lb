@@ -29,10 +29,10 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-lb:regional_proxy_lb/v4.0.1"
+    module_name = "blueprints/terraform/terraform-google-lb:regional_proxy_lb/v4.1.0"
   }
 
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-lb:regional_proxy_lb/v4.0.1"
+    module_name = "blueprints/terraform/terraform-google-lb:regional_proxy_lb/v4.1.0"
   }
 }

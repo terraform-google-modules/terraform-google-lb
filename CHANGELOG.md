@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.1.0](https://github.com/terraform-google-modules/terraform-google-lb/compare/v4.0.2...v4.1.0) (2024-01-03)
+
+
+### Features
+
+* add a submodule to support proxy based regional external load balancer ([#77](https://github.com/terraform-google-modules/terraform-google-lb/issues/77)) ([a21f56d](https://github.com/terraform-google-modules/terraform-google-lb/commit/a21f56de7e0776256aa6d1bbececc1aeaff6696b))
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform Google Provider to v5 (major) ([#81](https://github.com/terraform-google-modules/terraform-google-lb/issues/81)) ([753d324](https://github.com/terraform-google-modules/terraform-google-lb/commit/753d324c11a44950db975bcb539c647472d5ccbe))
+
 ## [4.0.2](https://github.com/terraform-google-modules/terraform-google-lb/compare/v4.0.1...v4.0.2) (2023-10-20)
 
 
