@@ -49,6 +49,7 @@ variable "create_firewall_rules" {
 variable "target_tags" {
   description = "List of target tags to allow traffic using firewall rule."
   type        = list(string)
+  default     = []
 }
 
 
@@ -66,12 +67,19 @@ variable "create_proxy_only_subnet" {
 
 variable "proxy_only_subnet_cidr" {
   type        = string
+  default     = ""
   description = "The CIDR block of the proxy only subnet"
 }
 
 variable "port_front_end" {
   description = "Port of the load balancer front end"
   type        = number
+}
+
+variable "proxy_header" {
+  type        = string
+  default     = "NONE"
+  description = "Specifies the type of proxy header to append before sending data to the backend. Default value is NONE. Possible values are: NONE, PROXY_V1"
 }
 
 variable "health_check" {
@@ -100,7 +108,7 @@ variable "backend" {
     port             = optional(number)
     port_name        = optional(string)
     description      = optional(string)
-    backend_type     = string #INSTANCE_GROUP, NETWORK_ENDPOINT_GROUP
+    backend_type     = optional(string) #INSTANCE_GROUP, NETWORK_ENDPOINT_GROUP
     session_affinity = optional(string)
     timeout_sec      = optional(number)
 
