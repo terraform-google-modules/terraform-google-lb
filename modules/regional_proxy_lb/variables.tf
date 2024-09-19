@@ -108,7 +108,7 @@ variable "backend" {
     port             = optional(number)
     port_name        = optional(string)
     description      = optional(string)
-    backend_type     = optional(string) #INSTANCE_GROUP, NETWORK_ENDPOINT_GROUP
+    backend_type     = string #INSTANCE_GROUP, NETWORK_ENDPOINT_GROUP
     session_affinity = optional(string)
     timeout_sec      = optional(number)
 
