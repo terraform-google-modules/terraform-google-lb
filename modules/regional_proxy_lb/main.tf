@@ -136,7 +136,7 @@ resource "google_compute_firewall" "default-hc-fw" {
 }
 
 resource "google_compute_firewall" "default-proxy-fw" {
-  count         = var.create_firewall_rules ? 1 : 0
+  count         = var.create_firewall_rules && var.create_proxy_only_subnet ? 1 : 0
   name          = "${var.name}-allow-proxy"
   direction     = "INGRESS"
   project       = var.network_project
