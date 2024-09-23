@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.0.0](https://github.com/terraform-google-modules/terraform-google-lb/compare/v4.1.0...v5.0.0) (2024-09-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG >= 4.53:** update regional proxy lb module ([#111](https://github.com/terraform-google-modules/terraform-google-lb/issues/111))
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v6 (major) ([#104](https://github.com/terraform-google-modules/terraform-google-lb/issues/104)) ([e59726c](https://github.com/terraform-google-modules/terraform-google-lb/commit/e59726c80f6f905cd9a074ac3e90ce41ff0072af))
+
+
+### Bug Fixes
+
+* **TPG >= 4.53:** update regional proxy lb module ([#111](https://github.com/terraform-google-modules/terraform-google-lb/issues/111)) ([b1ecad2](https://github.com/terraform-google-modules/terraform-google-lb/commit/b1ecad22a39889db4a3c6ac81a0a7748d30f1357))
+
 ## [4.1.0](https://github.com/terraform-google-modules/terraform-google-lb/compare/v4.0.2...v4.1.0) (2024-01-03)
 
 
