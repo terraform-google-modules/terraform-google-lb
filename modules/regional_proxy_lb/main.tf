@@ -51,6 +51,7 @@ resource "google_compute_region_target_tcp_proxy" "default" {
   name            = "${var.name}-proxy"
   project         = var.project
   region          = var.region
+  proxy_header    = var.proxy_header
   backend_service = google_compute_region_backend_service.default.id
 }
 
@@ -135,7 +136,7 @@ resource "google_compute_firewall" "default-hc-fw" {
 }
 
 resource "google_compute_firewall" "default-proxy-fw" {
-  count         = var.create_firewall_rules ? 1 : 0
+  count         = var.create_firewall_rules && var.create_proxy_only_subnet ? 1 : 0
   name          = "${var.name}-allow-proxy"
   direction     = "INGRESS"
   project       = var.network_project

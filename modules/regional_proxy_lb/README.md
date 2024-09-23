@@ -75,9 +75,10 @@ module "gce-lb-tcp" {
 | network\_project | Name of the project where the network resides. Useful for shared VPC. Default is var.project. | `string` | n/a | yes |
 | port\_front\_end | Port of the load balancer front end | `number` | n/a | yes |
 | project | The project to deploy to, if not set the default provider project is used. | `string` | `null` | no |
-| proxy\_only\_subnet\_cidr | The CIDR block of the proxy only subnet | `string` | n/a | yes |
+| proxy\_header | Specifies the type of proxy header to append before sending data to the backend. Default value is NONE. Possible values are: NONE, PROXY\_V1 | `string` | `"NONE"` | no |
+| proxy\_only\_subnet\_cidr | The CIDR block of the proxy only subnet.This is required when create\_proxy\_only\_subnet is set to true. | `string` | `""` | no |
 | region | Region of the created GCP resources from this module. | `string` | n/a | yes |
-| target\_tags | List of target tags to allow traffic using firewall rule. | `list(string)` | n/a | yes |
+| target\_tags | List of target tags to allow traffic using firewall rule.This is required when create\_firewall\_rules is set to true. | `list(string)` | `[]` | no |
 
 ## Outputs
 
