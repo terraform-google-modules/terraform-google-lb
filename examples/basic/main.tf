@@ -28,7 +28,7 @@ resource "google_service_account" "instance-group" {
 
 module "instance_template" {
   source               = "terraform-google-modules/vm/google//modules/instance_template"
-  version              = "~> 11.0"
+  version              = "~> 12.0"
   subnetwork           = google_compute_subnetwork.subnetwork.self_link
   source_image_family  = var.image_family
   source_image_project = var.image_project
@@ -42,7 +42,7 @@ module "instance_template" {
 
 module "managed_instance_group" {
   source            = "terraform-google-modules/vm/google//modules/mig"
-  version           = "~> 11.0"
+  version           = "~> 12.0"
   region            = var.region
   target_size       = 2
   hostname          = "mig-simple"
