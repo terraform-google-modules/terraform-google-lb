@@ -38,7 +38,7 @@ resource "google_compute_forwarding_rule" "default" {
   project               = var.project
   ip_protocol           = local.ip_protocol
   load_balancing_scheme = local.load_balancing_scheme
-  network_tier          = "STANDARD"
+  network_tier          = var.network_tier
   port_range            = var.port_front_end
   region                = var.region
   network               = var.network
