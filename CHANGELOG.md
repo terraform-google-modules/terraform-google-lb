@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.1.0](https://github.com/terraform-google-modules/terraform-google-lb/compare/v5.0.0...v5.1.0) (2025-03-26)
+
+
+### Features
+
+* add support for network_tier variable in regional_proxy_lb sub-module ([#122](https://github.com/terraform-google-modules/terraform-google-lb/issues/122)) ([64df392](https://github.com/terraform-google-modules/terraform-google-lb/commit/64df3929608aad2259689fc67300a6b30c13303a))
+
 ## [5.0.0](https://github.com/terraform-google-modules/terraform-google-lb/compare/v4.1.0...v5.0.0) (2024-09-23)
 
 
