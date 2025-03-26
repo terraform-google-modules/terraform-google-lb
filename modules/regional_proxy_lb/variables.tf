@@ -35,6 +35,12 @@ variable "network" {
   description = "Name of the network to create resources in."
 }
 
+variable "network_tier" {
+  description = "The network tier to use for the forwarding rule. Default is STANDARD."
+  type        = string
+  default     = "STANDARD"
+}
+
 variable "network_project" {
   type        = string
   description = "Name of the project where the network resides. Useful for shared VPC. Default is var.project."

@@ -73,6 +73,7 @@ module "gce-lb-tcp" {
 | name | Name of the load balancer and prefix for supporting resources. | `string` | n/a | yes |
 | network | Name of the network to create resources in. | `string` | n/a | yes |
 | network\_project | Name of the project where the network resides. Useful for shared VPC. Default is var.project. | `string` | n/a | yes |
+| network\_tier | The network tier to use for the forwarding rule. Default is STANDARD. | `string` | `"STANDARD"` | no |
 | port\_front\_end | Port of the load balancer front end | `number` | n/a | yes |
 | project | The project to deploy to, if not set the default provider project is used. | `string` | `null` | no |
 | proxy\_header | Specifies the type of proxy header to append before sending data to the backend. Default value is NONE. Possible values are: NONE, PROXY\_V1 | `string` | `"NONE"` | no |
