@@ -62,7 +62,7 @@ module "managed_instance_group" {
 
 module "load_balancer_default" {
   source  = "terraform-google-modules/lb/google"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name         = "basic-load-balancer-default"
   region       = var.region
@@ -74,7 +74,7 @@ module "load_balancer_default" {
 
 module "load_balancer_no_hc" {
   source  = "terraform-google-modules/lb/google"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name                 = "basic-load-balancer-no-hc"
   region               = var.region
@@ -87,7 +87,7 @@ module "load_balancer_no_hc" {
 
 module "load_balancer_custom_hc" {
   source  = "terraform-google-modules/lb/google"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name         = "basic-load-balancer-custom-hc"
   region       = var.region
