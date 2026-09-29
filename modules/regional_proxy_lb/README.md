@@ -39,6 +39,7 @@ module "gce-lb-tcp" {
   backend = {
     port_name    = local.port_name
     backend_type = "INSTANCE_GROUP"
+    timeout_sec  = 30 # idle timeout in seconds, defaults to 10
 
     log_config = {
       enable = true
@@ -69,6 +70,10 @@ module "gce-lb-tcp" {
 | backend | backend attributes | <pre>object({<br>    port             = optional(number)<br>    port_name        = optional(string)<br>    description      = optional(string)<br>    backend_type     = string #INSTANCE_GROUP, NETWORK_ENDPOINT_GROUP<br>    session_affinity = optional(string)<br>    timeout_sec      = optional(number)<br><br>    log_config = object({<br>      enable      = optional(bool)<br>      sample_rate = optional(number)<br>    })<br><br>    groups = list(object({<br>      group = string<br><br>      balancing_mode               = optional(string)<br>      capacity_scaler              = optional(number)<br>      description                  = optional(string)<br>      max_connections              = optional(number)<br>      max_connections_per_instance = optional(number)<br>      max_connections_per_endpoint = optional(number)<br>      max_rate                     = optional(number)<br>      max_rate_per_instance        = optional(number)<br>      max_rate_per_endpoint        = optional(number)<br>      max_utilization              = optional(number)<br>    }))<br>  })</pre> | n/a | yes |
 | create\_firewall\_rules | Whether to create firewall rules for health check and proxy | `bool` | `false` | no |
 | create\_proxy\_only\_subnet | Whether to create the proxy only subnet for the region | `bool` | `false` | no |
+| firewall\_ports | Ports allowed by the firewall rule created when create\_firewall\_rules is true. Empty allows all ports. | `list(string)` | `[]` | no |
+| firewall\_priority | Priority of the firewall rule created when create\_firewall\_rules is true. | `number` | `1000` | no |
+| firewall\_source\_ranges | Source ranges for the firewall rule created when create\_firewall\_rules is true. Defaults to the Google health-check ranges. | `list(string)` | `[]` | no |
+| forwarding\_rule\_name | Name of the forwarding rule. Defaults to var.name with a "-fwd-rule" suffix. | `string` | `null` | no |
 | health\_check | Health check to determine whether instances are responsive and able to do work | <pre>object({<br>    check_interval_sec  = optional(number)<br>    healthy_threshold   = optional(number)<br>    timeout_sec         = optional(number)<br>    unhealthy_threshold = optional(number)<br>    tcp_health_check = object({<br>      request            = optional(string)<br>      response           = optional(string)<br>      port               = optional(number)<br>      port_name          = optional(string)<br>      port_specification = optional(string)<br>      proxy_header       = optional(string)<br>      }<br>    )<br>    }<br>  )</pre> | n/a | yes |
 | name | Name of the load balancer and prefix for supporting resources. | `string` | n/a | yes |
 | network | Name of the network to create resources in. | `string` | n/a | yes |
@@ -79,6 +84,7 @@ module "gce-lb-tcp" {
 | proxy\_header | Specifies the type of proxy header to append before sending data to the backend. Default value is NONE. Possible values are: NONE, PROXY\_V1 | `string` | `"NONE"` | no |
 | proxy\_only\_subnet\_cidr | The CIDR block of the proxy only subnet.This is required when create\_proxy\_only\_subnet is set to true. | `string` | `""` | no |
 | region | Region of the created GCP resources from this module. | `string` | n/a | yes |
+| target\_proxy\_name | Name of the target TCP proxy. Defaults to var.name with a "-proxy" suffix. | `string` | `null` | no |
 | target\_tags | List of target tags to allow traffic using firewall rule.This is required when create\_firewall\_rules is set to true. | `list(string)` | `[]` | no |
 
 ## Outputs

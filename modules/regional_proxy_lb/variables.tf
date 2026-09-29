@@ -59,6 +59,24 @@ variable "target_tags" {
 }
 
 
+variable "firewall_source_ranges" {
+  description = "Source ranges for the firewall rule created when create_firewall_rules is true. Defaults to the Google health-check ranges."
+  type        = list(string)
+  default     = []
+}
+
+variable "firewall_ports" {
+  description = "Ports allowed by the firewall rule created when create_firewall_rules is true. Empty allows all ports."
+  type        = list(string)
+  default     = []
+}
+
+variable "firewall_priority" {
+  description = "Priority of the firewall rule created when create_firewall_rules is true."
+  type        = number
+  default     = 1000
+}
+
 variable "address" {
   description = "IP address of the external load balancer, if not provided, an ephemeral address will be created"
   type        = string
@@ -75,6 +93,18 @@ variable "proxy_only_subnet_cidr" {
   type        = string
   default     = ""
   description = "The CIDR block of the proxy only subnet.This is required when create_proxy_only_subnet is set to true."
+}
+
+variable "forwarding_rule_name" {
+  description = "Name of the forwarding rule. Defaults to var.name with a \"-fwd-rule\" suffix."
+  type        = string
+  default     = null
+}
+
+variable "target_proxy_name" {
+  description = "Name of the target TCP proxy. Defaults to var.name with a \"-proxy\" suffix."
+  type        = string
+  default     = null
 }
 
 variable "port_front_end" {

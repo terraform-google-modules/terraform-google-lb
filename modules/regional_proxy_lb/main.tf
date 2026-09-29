@@ -34,7 +34,7 @@ resource "google_compute_subnetwork" "proxy_only_subnet" {
 
 # forwarding rule
 resource "google_compute_forwarding_rule" "default" {
-  name                  = "${var.name}-fwd-rule"
+  name                  = coalesce(var.forwarding_rule_name, "${var.name}-fwd-rule")
   project               = var.project
   ip_protocol           = local.ip_protocol
   load_balancing_scheme = local.load_balancing_scheme
@@ -48,7 +48,7 @@ resource "google_compute_forwarding_rule" "default" {
 }
 
 resource "google_compute_region_target_tcp_proxy" "default" {
-  name            = "${var.name}-proxy"
+  name            = coalesce(var.target_proxy_name, "${var.name}-proxy")
   project         = var.project
   region          = var.region
   proxy_header    = var.proxy_header
@@ -63,7 +63,7 @@ resource "google_compute_region_backend_service" "default" {
   protocol              = local.ip_protocol
   port_name             = var.backend.backend_type == "INSTANCE_GROUP" ? var.backend.port_name : null
   load_balancing_scheme = local.load_balancing_scheme
-  timeout_sec           = 10
+  timeout_sec           = coalesce(var.backend.timeout_sec, 10)
   health_checks         = [google_compute_region_health_check.default.id]
   dynamic "backend" {
     for_each = toset(var.backend.groups)
@@ -128,9 +128,11 @@ resource "google_compute_firewall" "default-hc-fw" {
   direction     = "INGRESS"
   project       = var.network_project
   network       = var.network
-  source_ranges = data.google_netblock_ip_ranges.hcs.cidr_blocks_ipv4
+  priority      = var.firewall_priority
+  source_ranges = coalescelist(var.firewall_source_ranges, data.google_netblock_ip_ranges.hcs.cidr_blocks_ipv4)
   allow {
     protocol = local.ip_protocol
+    ports    = var.firewall_ports
   }
   target_tags = var.target_tags
 }
