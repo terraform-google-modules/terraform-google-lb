@@ -77,6 +77,18 @@ variable "proxy_only_subnet_cidr" {
   description = "The CIDR block of the proxy only subnet.This is required when create_proxy_only_subnet is set to true."
 }
 
+variable "forwarding_rule_name" {
+  description = "Name of the forwarding rule. Defaults to \"<name>-fwd-rule\"."
+  type        = string
+  default     = null
+}
+
+variable "target_proxy_name" {
+  description = "Name of the target TCP proxy. Defaults to \"<name>-proxy\"."
+  type        = string
+  default     = null
+}
+
 variable "port_front_end" {
   description = "Port of the load balancer front end"
   type        = number

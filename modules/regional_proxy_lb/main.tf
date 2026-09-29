@@ -34,7 +34,7 @@ resource "google_compute_subnetwork" "proxy_only_subnet" {
 
 # forwarding rule
 resource "google_compute_forwarding_rule" "default" {
-  name                  = "${var.name}-fwd-rule"
+  name                  = coalesce(var.forwarding_rule_name, "${var.name}-fwd-rule")
   project               = var.project
   ip_protocol           = local.ip_protocol
   load_balancing_scheme = local.load_balancing_scheme
@@ -48,7 +48,7 @@ resource "google_compute_forwarding_rule" "default" {
 }
 
 resource "google_compute_region_target_tcp_proxy" "default" {
-  name            = "${var.name}-proxy"
+  name            = coalesce(var.target_proxy_name, "${var.name}-proxy")
   project         = var.project
   region          = var.region
   proxy_header    = var.proxy_header
