@@ -128,9 +128,11 @@ resource "google_compute_firewall" "default-hc-fw" {
   direction     = "INGRESS"
   project       = var.network_project
   network       = var.network
-  source_ranges = data.google_netblock_ip_ranges.hcs.cidr_blocks_ipv4
+  priority      = var.firewall_priority
+  source_ranges = coalescelist(var.firewall_source_ranges, data.google_netblock_ip_ranges.hcs.cidr_blocks_ipv4)
   allow {
     protocol = local.ip_protocol
+    ports    = var.firewall_ports
   }
   target_tags = var.target_tags
 }

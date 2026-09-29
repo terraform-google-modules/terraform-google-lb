@@ -59,6 +59,24 @@ variable "target_tags" {
 }
 
 
+variable "firewall_source_ranges" {
+  description = "Source ranges for the firewall rule created when create_firewall_rules is true. Defaults to the Google health-check ranges."
+  type        = list(string)
+  default     = []
+}
+
+variable "firewall_ports" {
+  description = "Ports allowed by the firewall rule created when create_firewall_rules is true. Empty allows all ports."
+  type        = list(string)
+  default     = []
+}
+
+variable "firewall_priority" {
+  description = "Priority of the firewall rule created when create_firewall_rules is true."
+  type        = number
+  default     = 1000
+}
+
 variable "address" {
   description = "IP address of the external load balancer, if not provided, an ephemeral address will be created"
   type        = string
