@@ -96,13 +96,13 @@ variable "proxy_only_subnet_cidr" {
 }
 
 variable "forwarding_rule_name" {
-  description = "Name of the forwarding rule. Defaults to \"<name>-fwd-rule\"."
+  description = "Name of the forwarding rule. Defaults to var.name with a \"-fwd-rule\" suffix."
   type        = string
   default     = null
 }
 
 variable "target_proxy_name" {
-  description = "Name of the target TCP proxy. Defaults to \"<name>-proxy\"."
+  description = "Name of the target TCP proxy. Defaults to var.name with a \"-proxy\" suffix."
   type        = string
   default     = null
 }
