@@ -53,18 +53,6 @@ module "gce-lb-tcp" {
 }
 ```
 
-### Backend timeout
-
-For proxy Network Load Balancers, `backend.timeout_sec` is an idle timeout. The load balancer closes a connection when no data flows in either direction for that many seconds. The default is `10`. Raise it for long-lived, mostly idle connections, such as streaming responses or tunnels through a forward proxy.
-
-### Existing load balancers
-
-Use `forwarding_rule_name` and `target_proxy_name` when you adopt a load balancer whose names don't follow the `<name>-fwd-rule` and `<name>-proxy` pattern. Changing a name replaces the resource, and a replaced forwarding rule with an ephemeral IP gets a new IP.
-
-### Firewall rule
-
-With `create_firewall_rules = true`, the module creates one ingress rule for `target_tags`. By default, it allows all TCP ports from the Google health-check ranges at priority 1000. Override this with `firewall_source_ranges`, `firewall_ports` and `firewall_priority`.
-
 
 ## Resources created
 
