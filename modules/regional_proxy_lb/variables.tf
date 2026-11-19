@@ -95,6 +95,7 @@ variable "health_check" {
     healthy_threshold   = optional(number)
     timeout_sec         = optional(number)
     unhealthy_threshold = optional(number)
+    logging             = optional(bool, false)
     tcp_health_check = object({
       request            = optional(string)
       response           = optional(string)
